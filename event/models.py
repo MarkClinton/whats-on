@@ -87,3 +87,30 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.body} by {self.commenter}"
+
+RESPONSE = ((0, "Not Going"), (1, "Going"), (2, "Maybe"))
+
+class EventAttendees(models.Model):
+    """
+    Defines the EventAttendees model fields
+
+    :param models.Model: Django class to define data models
+    """
+    event = models.ForeignKey(
+        Event, on_delete = models.CASCADE, related_name="attending"
+    )
+    attendee = models.ForeignKey(
+        User, on_delete = models.CASCADE, related_name="attendee"
+    )
+    rsvp = models.IntegerField(choices=RESPONSE, default=0)
+    is_blocked = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        """
+        Specify the order of Attendees
+        """
+        ordering = ["-created_at"]
+
+    def __str__(self):
+        return f"{self.attendee} is going to {self.event}"
