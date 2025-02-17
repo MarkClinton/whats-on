@@ -1,7 +1,7 @@
 """
-admin
+admin.py
 
-
+Register the NewUser custom model on the admin portal.
 """
 
 from django.contrib import admin

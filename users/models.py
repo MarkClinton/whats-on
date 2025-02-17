@@ -1,17 +1,11 @@
 """
 Custom User model for Django
 
-This module defines a custom user model `NewUser` that extends Django's 
-`AbstractBaseUser` and `PermissionsMixin`, allowing authentication using 
-an email instead of a username. It also includes additional profile fields 
-such as `about`, `location`, and `phone_number`.
+This module defines a custom user model NewUser that extends Django's 
+AbstractBaseUser and PermissionsMixin.
 
-The `CustomAccountManager` class is responsible for user creation, providing 
-methods to create both regular users and superusers.
-
-Classes:
-    - CustomAccountManager: Custom manager for handling user creation.
-    - NewUser: Custom user model with extended fields and email-based authentication.
+The `CustomAccountManager` class is for user creation, functionality to
+create both regular users and superusers.
 
 """
 from django.db import models
