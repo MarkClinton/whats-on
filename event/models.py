@@ -28,7 +28,8 @@ class Event(models.Model):
     date = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()
-    location = models.CharField(max_length=50) #change soon
+    # Look to update the location field to something better
+    location = models.CharField(max_length=50)
     enable_comments = models.BooleanField(default=True)
     limit = models.IntegerField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
@@ -44,7 +45,7 @@ class Event(models.Model):
         return f"{self.event_title} | created by {self.host}"
 
 
-class Comments(models.Model):
+class Comment(models.Model):
     commenter = models.ForeignKey(
         User, on_delete = models.CASCADE, related_name="commenter"
     )
