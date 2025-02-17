@@ -4,7 +4,7 @@ Custom User model for Django
 This module defines a custom user model NewUser that extends Django's 
 AbstractBaseUser and PermissionsMixin.
 
-The `CustomAccountManager` class is for user creation, functionality to
+The CustomAccountManager class is for user creation, functionality to
 create both regular users and superusers.
 
 """
