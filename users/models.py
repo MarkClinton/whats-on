@@ -69,7 +69,7 @@ class CustomAccountManager(BaseUserManager):
 
 class NewUser(AbstractBaseUser, PermissionsMixin):
     """
-    Custom Django user model function for a new user. 
+    Custom Django user model class for a new user. 
 
     :param AbstractBaseUser: Django class for creating custom user model
     :param PermissionsMixin: Django mixin for user auth and permissions.

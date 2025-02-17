@@ -1,9 +1,19 @@
+"""
+Event model
+
+This model defines the Event, Comments and Categories models. 
+"""
 from django.db import models
 from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
 class Category(models.Model):
+    """
+    Defines the category model fields
+
+    :param models.Model: Django class to define data models
+    """
     name = models.CharField(max_length=50)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -17,6 +27,11 @@ class Category(models.Model):
         return f"{self.name}"
 
 class Event(models.Model):
+    """
+    Defines the Event model fields
+
+    :param models.Model: Django class to define data models
+    """
     event_title = models.CharField(max_length=200)
     description = models.TextField()
     category = models.ForeignKey(
@@ -46,6 +61,11 @@ class Event(models.Model):
 
 
 class Comment(models.Model):
+    """
+    Defines the Comment model fields
+
+    :param models.Model: Django class to define data models
+    """
     commenter = models.ForeignKey(
         User, on_delete = models.CASCADE, related_name="commenter"
     )
