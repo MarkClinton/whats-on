@@ -11,6 +11,7 @@ create both regular users and superusers.
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from phonenumber_field.modelfields import PhoneNumberField
+from cloudinary.models import CloudinaryField
 
 class CustomAccountManager(BaseUserManager):
     """
@@ -79,6 +80,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     user_name = models.CharField(max_length=150, unique=True)
     first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)
+    profile_image = CloudinaryField('Profile Image', default='profile_image')
     about = models.TextField(max_length=500, blank=True)
     location = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now=True)

@@ -20,7 +20,7 @@ class UserAdminConfig(UserAdmin):
     list_display = ("email", "user_name", "first_name", "is_active", "is_superuser")
 
     fieldsets = (
-        (None, {"fields": ("email", "user_name", "first_name", "last_name",)}),
+        (None, {"fields": ("email", "user_name", "first_name", "last_name", "profile_image")}),
         ("Permissions", {"fields": ("is_active", "is_staff", "is_superuser")}),
         ("Personal", {"fields": ("about", "location", "phone_number")})
     )
@@ -28,8 +28,8 @@ class UserAdminConfig(UserAdmin):
     add_fieldsets = (
         (None, {
             "classes": ("wide",),
-            "fields": ("email", "user_name", "first_name", "last_name", "password1", 
-                        "password2", "is_active", "is_staff")
+            "fields": ("email", "user_name", "first_name", "last_name", "profile_image",
+                        "password1", "password2", "is_active", "is_staff")
         }),
     )
 

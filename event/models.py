@@ -5,6 +5,7 @@ This model defines the Event, Comments and Categories models.
 """
 from django.db import models
 from django.contrib.auth import get_user_model
+from cloudinary.models import CloudinaryField
 
 User = get_user_model()
 
@@ -42,6 +43,7 @@ class Event(models.Model):
     host = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name="event"
     )
+    event_image = CloudinaryField('Event Image', default='event_image')
     date = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()
