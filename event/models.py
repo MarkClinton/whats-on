@@ -8,6 +8,8 @@ from django.contrib.auth import get_user_model
 
 User = get_user_model()
 
+RESPONSE = ((0, "Not Going"), (1, "Going"), (2, "Maybe"))
+
 class Category(models.Model):
     """
     Defines the category model fields
@@ -87,8 +89,6 @@ class Comment(models.Model):
 
     def __str__(self):
         return f"{self.body} by {self.commenter}"
-
-RESPONSE = ((0, "Not Going"), (1, "Going"), (2, "Maybe"))
 
 class EventAttendees(models.Model):
     """
