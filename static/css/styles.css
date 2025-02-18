@@ -1,0 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&family=Sigmar&display=swap');
+
+.header-bg {
+    background-color: #009688;
+}
+
+.footer-bg {
+    background-color: #009688;
+}
+
+.brand {
+    font-family: "Sigmar", "serif";
+    font-weight: 400;
+    font-style: normal;
+    color: #FFC107;
+}
