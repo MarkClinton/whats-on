@@ -26,29 +26,37 @@
 
 <body class="d-flex flex-column h-100 main-bg">
 
-    <!--Navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light header-bg">
+    <nav class="navbar navbar-expand-lg header-bg">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'home' %}"><span class="brand">What'sOn.com</span></a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
-                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <button type="button" class="btn btn-warning btn-sm btn-main">New
-                Event</button>
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <button type="button" class="btn btn-warning btn-sm btn-main ms-auto me-4">New Event</button>
+                <ul class="navbar-nav me-2 mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
+                        <a class="nav-link {% if request.path == boo %}active{% endif %}" aria-current="page"
                             href="#">Hosting</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
-                            href="#">Attending</a>
+                        <a class="nav-link {% if request.path == boo %}active{% endif %}" href="#">Attending</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
-                            href="#">Explore Events</a>
+                        <a class="nav-link {% if request.path == boo %}active{% endif %}" href="#">Explore
+                            Events</a>
+                    </li>
+                    <li class="nav-item dropdown">
+
+                        <img src="{% static 'images/pp.webp' %}" alt="Logo" class="header-img nav-link dropdown-toggle"
+                            href="#" role="button" data-bs-toggle="dropdown">
+
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">My Profile</a></li>
+                            <li><a class="dropdown-item" href="#">Sign Out</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
