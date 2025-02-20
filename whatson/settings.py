@@ -127,11 +127,16 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# https://docs.allauth.org/en/dev/account/configuration.html
+# No email verification user before signing in
 ACCOUNT_EMAIL_VERIFICATION = 'none'
-ACCOUNT_USER_MODEL_USERNAME_FIELD = 'email'
+# Set so no username is required when signing up
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None
+# Email is required when signing up
 ACCOUNT_EMAIL_REQUIRED = True
+# Username is not required when signing up
 ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_LOGIN_METHODS = 'email'
+# Email is needed when logging in
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 
 # Internationalization
