@@ -1,6 +1,9 @@
 {% load static %}
 
-{% url 'home' as home_url %}
+{% url 'event_home' as event_home_url %}
+{% url 'event_create' as event_create_url %}
+{% url 'event_hosting' as event_host_url %}
+{% url 'event_attending' as event_attend_url %}
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
@@ -31,7 +34,7 @@
 
     <nav class="navbar navbar-expand-lg header-bg">
         <div class="container-fluid">
-            <a class="navbar-brand" href="{% url 'home' %}"><span class="brand">What'sOn.com</span></a>
+            <a class="navbar-brand" href="{% url 'event_home' %}"><span class="brand">What'sOn.com</span></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -42,11 +45,12 @@
                 <ul class="navbar-nav ms-auto me-4 mb-2 mb-lg-0">
                     {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
-                            href="{% url 'home' %}">Home</a>
+                        <a class="nav-link {% if request.path == event_home_url %}active{% endif %}" aria-current="page"
+                            href="{% url 'event_home' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link btn btn-warning btn-sm btn-main me-2" aria-current="page" href="#">Create
+                        <a class="nav-link {% if request.path == event_create_url %}active{% endif %}"
+                            aria-current="page" href="{% url 'event_create' %}">Create
                             Event</a>
                     </li>
                     <li class="nav-item dropdown">
@@ -55,8 +59,8 @@
                             My Events
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Hosting</a></li>
-                            <li><a class="dropdown-item" href="#">Attending</a></li>
+                            <li><a class="dropdown-item" href="{% url 'event_hosting' %}">Hosting</a></li>
+                            <li><a class="dropdown-item" href="{% url 'event_attending' %}">Attending</a></li>
                         </ul>
                     </li>
                     <li class="nav-item dropdown">
