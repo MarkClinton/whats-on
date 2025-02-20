@@ -19,7 +19,7 @@ class CustomAccountManager(BaseUserManager):
     custom user model, this custom manager is used instead.
     """
 
-    def create_user(self, email, user_name, first_name, password, **other_fields):
+    def create_user(self, email, password, **other_fields):
         """
         Custom function to create a regular user. 
 
@@ -35,13 +35,12 @@ class CustomAccountManager(BaseUserManager):
             raise ValueError("You must provide an email address")
 
         email = self.normalize_email(email)
-        user = self.model(email=email, user_name=user_name,
-                          first_name=first_name, **other_fields)
+        user = self.model(email=email, **other_fields)
         user.set_password(password)
         user.save()
         return user
 
-    def create_superuser(self, email, user_name, first_name, password, **other_fields):
+    def create_superuser(self, email, password, **other_fields):
         """
         Custom function to create a new superuser. 
 
@@ -64,7 +63,7 @@ class CustomAccountManager(BaseUserManager):
             raise ValueError (
                 "Superuser must be assigned to is_superuser = True"
             )
-        return self.create_user(email, user_name, first_name, password, **other_fields)
+        return self.create_user(email, password, **other_fields)
 
 
 
@@ -77,7 +76,6 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     """
 
     email = models.EmailField(unique=True)
-    user_name = models.CharField(max_length=150, unique=True)
     first_name = models.CharField(max_length=150)
     last_name = models.CharField(max_length=150)
     profile_image = CloudinaryField('Profile Image', default='profile_image')
@@ -91,7 +89,6 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     objects = CustomAccountManager()
 
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['user_name', 'first_name']
 
     def __str__(self):
-        return str(self.first_name + " " + self.last_name)
+        return str(self.email)

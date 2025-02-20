@@ -14,13 +14,13 @@ class UserAdminConfig(UserAdmin):
     :param UserAdmin: Django class to customise the user interface
     """
 
-    search_fields = ("email", "user_name", "first_name")
-    list_filter = ("email", "user_name", "is_active", "is_superuser")
+    search_fields = ("email", "first_name")
+    list_filter = ("email", "is_active", "is_superuser")
     ordering = ("-created_at",)
-    list_display = ("email", "user_name", "first_name", "is_active", "is_superuser")
+    list_display = ("email", "first_name", "is_active", "is_superuser")
 
     fieldsets = (
-        (None, {"fields": ("email", "user_name", "first_name", "last_name", "profile_image")}),
+        (None, {"fields": ("email", "first_name", "last_name", "password", "profile_image")}),
         ("Permissions", {"fields": ("is_active", "is_staff", "is_superuser")}),
         ("Personal", {"fields": ("about", "location", "phone_number")})
     )
@@ -28,7 +28,7 @@ class UserAdminConfig(UserAdmin):
     add_fieldsets = (
         (None, {
             "classes": ("wide",),
-            "fields": ("email", "user_name", "first_name", "last_name", "profile_image",
+            "fields": ("email", "first_name", "last_name", "profile_image",
                         "password1", "password2", "is_active", "is_staff")
         }),
     )
