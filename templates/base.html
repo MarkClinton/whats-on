@@ -1,9 +1,11 @@
 {% load static %}
 
+{% url 'home' as home_url %}
 {% url 'event_home' as event_home_url %}
 {% url 'event_create' as event_create_url %}
 {% url 'event_hosting' as event_host_url %}
 {% url 'event_attending' as event_attend_url %}
+{% url 'user_profile' as user_profile_url %}
 {% url 'account_login' as login_url %}
 {% url 'account_signup' as signup_url %}
 {% url 'account_logout' as logout_url %}
@@ -34,7 +36,11 @@
 
     <nav class="navbar navbar-expand-lg header-bg">
         <div class="container-fluid">
+            {% if user.is_authenticated %}
             <a class="navbar-brand" href="{% url 'event_home' %}"><span class="brand">What'sOn.com</span></a>
+            {% else %}
+            <a class="navbar-brand" href="{% url 'home' %}"><span class="brand">What'sOn.com</span></a>
+            {% endif %}
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -54,8 +60,8 @@
                             Event</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
+                        <a class="nav-link dropdown-toggle {% if request.path == event_host_url or request.path == event_attend_url %}active{% endif %}"
+                            href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             My Events
                         </a>
                         <ul class="dropdown-menu">
@@ -67,7 +73,7 @@
                         <img src="{% static 'images/pp.webp' %}" alt="Logo" class="header-img nav-link dropdown-toggle"
                             href="#" role="button" data-bs-toggle="dropdown">
                         <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">My Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'user_profile' %}">My Profile</a></li>
                             <li><a class="dropdown-item" href="{% url 'account_logout' %}">Sign Out</a></li>
                         </ul>
                     </li>
