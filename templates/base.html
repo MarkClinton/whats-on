@@ -1,6 +1,9 @@
 {% load static %}
 
 {% url 'home' as home_url %}
+{% url 'account_login' as login_url %}
+{% url 'account_signup' as signup_url %}
+{% url 'account_logout' as logout_url %}
 
 <!DOCTYPE html>
 <html class="h-100" lang="en">
@@ -34,30 +37,46 @@
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
+
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <button type="button" class="btn btn-warning btn-sm btn-main ms-auto me-4">New Event</button>
-                <ul class="navbar-nav me-2 mb-2 mb-lg-0">
+                <ul class="navbar-nav ms-auto me-4 mb-2 mb-lg-0">
+                    {% if user.is_authenticated %}
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == boo %}active{% endif %}" aria-current="page"
-                            href="#">Hosting</a>
+                        <a class="nav-link {% if request.path == home_url %}active{% endif %}" aria-current="page"
+                            href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {% if request.path == boo %}active{% endif %}" href="#">Attending</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == boo %}active{% endif %}" href="#">Explore
-                            Events</a>
+                        <a class="nav-link btn btn-warning btn-sm btn-main me-2" aria-current="page" href="#">Create
+                            Event</a>
                     </li>
                     <li class="nav-item dropdown">
-
-                        <img src="{% static 'images/pp.webp' %}" alt="Logo" class="header-img nav-link dropdown-toggle"
-                            href="#" role="button" data-bs-toggle="dropdown">
-
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="#">My Profile</a></li>
-                            <li><a class="dropdown-item" href="#">Sign Out</a></li>
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            My Events
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Hosting</a></li>
+                            <li><a class="dropdown-item" href="#">Attending</a></li>
                         </ul>
                     </li>
+                    <li class="nav-item dropdown">
+                        <img src="{% static 'images/pp.webp' %}" alt="Logo" class="header-img nav-link dropdown-toggle"
+                            href="#" role="button" data-bs-toggle="dropdown">
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#">My Profile</a></li>
+                            <li><a class="dropdown-item" href="{% url 'account_logout' %}">Sign Out</a></li>
+                        </ul>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
+                            href="{% url 'account_signup' %}">Register</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page"
+                            href="{% url 'account_login' %}">Sign In</a>
+                    </li>
+                    {% endif %}
                 </ul>
             </div>
         </div>

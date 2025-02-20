@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 mt-3 offset-md-3 text-center">
+      <h3>{% trans "Sign In" %}</h3>
+
+      <p>{% blocktrans %}Welcome back to WhatsOn.com. Please Log In to search and manage your events!.
+        {% endblocktrans %}</p>
+      <p>{% blocktrans %}If you have not created an account yet, then
+        <a class="link" href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6 mt-3 offset-md-3 text-center">
+      <form class="login" method="POST" action="{% url 'account_login' %}">
+
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          {{ form.login }}
+        </div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          {{ form.password }}
+        </div>
+
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        {% csrf_token %}
+        <button class="btn btn-warning" type="submit">{% trans "Sign In" %}</button>
+
+        <hr>
+        {% if form.errors %}
+        {% for field in form %}
+        {% for error in field.errors %}
+        <div class="alert alert-danger">
+          <strong>{{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endfor %}
+        {% for error in form.non_field_errors %}
+        <div class="alert alert-danger">
+          <strong>{{ error|escape }}</strong>
+        </div>
+        {% endfor %}
+        {% endif %}
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
