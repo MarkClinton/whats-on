@@ -80,7 +80,7 @@ class NewUser(AbstractBaseUser, PermissionsMixin):
     last_name = models.CharField(max_length=150)
     profile_image = CloudinaryField('Profile Image', default='profile_image')
     about = models.TextField(max_length=500, blank=True)
-    location = models.CharField(max_length=100)
+    location = models.CharField(max_length=100, blank=True)
     created_at = models.DateTimeField(auto_now=True)
     phone_number = PhoneNumberField(blank=True)
     is_active = models.BooleanField(default=True)
