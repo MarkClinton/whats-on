@@ -15,7 +15,6 @@
   </div>
   <div class="row">
     <div class="col-md-4 mt-3 offset-md-4 text-center">
-
       <form method="post" action="{% url 'account_logout' %}">
         {% csrf_token %}
         {% if redirect_field_value %}
