@@ -1,15 +1,46 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 
 <!-- index.html content starts here -->
-<div class="container-fluid text-center">
-    <div class="row">
-        <div class="col-12">
-            Attending Events
+<div class="container">
+    <div class="row justify-content-center">
+        <!-- Events -->
+        <div class="col-12 mt-5">
+            <h1>Attending</h1>
+            <div class="row row-cols-3 row-cols-md-3 g-4">
+                {% for event in events %}
+                <div class="col">
+                    <div class="card">
+                        {% if "event_image" in event.event_image.url %}
+                        <img class="img-fluid rounded-start list-img" src="{% static 'images/pp.webp' %}"
+                            alt="placeholder image">
+                        {% else %}
+                        <img class="img-fluid rounded-start list-img" src=" {{ event.event_image.url }}"
+                            alt="{{ event.event_title }}">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{event.event_title}}</h5>
+                            <p class="card-text">{{ event.description}}</p>
+                            <p class="card-text"><small class="text-body-secondary">{{event.date}}</small></p>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
-    </div>
-</div>
 
-<!-- index.html content ends here -->
-{% endblock %}
+        {% if is_paginated %}
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+    </div>
+
+    <!-- index.html content ends here -->
+    {% endblock %}

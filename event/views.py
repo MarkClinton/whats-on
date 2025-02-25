@@ -29,12 +29,12 @@ def event_hosting(request):
     )
 
 def event_attending(request):
-    queryset = Event.objects.all()  # pylint: disable=no-member
+    events = Event.objects.all()  # pylint: disable=no-member
 
     return render(
         request,
         "event/attending.html",
         {
-            "event": queryset,
+            "events": events,
         },
     )
