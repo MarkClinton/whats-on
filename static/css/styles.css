@@ -22,6 +22,15 @@
     object-fit: cover;
 }
 
+.list-img {
+    height: 190px;
+    object-fit: cover;
+}
+
+.list-bg {
+    background-color: #B2DFDB;
+}
+
 .navbar a {
     font-family: "Roboto", "serif";
     font-weight: 400;

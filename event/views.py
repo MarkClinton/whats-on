@@ -18,13 +18,13 @@ def event_create(request):
     )
 
 def event_hosting(request):
-    queryset = Event.objects.all()  # pylint: disable=no-member
+    events = Event.objects.all()  # pylint: disable=no-member
 
     return render(
         request,
         "event/hosting.html",
         {
-            "event": queryset,
+            "events": events,
         },
     )
 
