@@ -10,38 +10,38 @@
             <form>
                 <div class="row mb-3">
                     <label for="firstName" class="col-sm-3 col-form-label">First name</label>
-                    <div class="col-sm-8">
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" id="firstName" value="{{ user.first_name }}">
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="lastName" class="col-sm-3 col-form-label">Last name</label>
-                    <div class="col-sm-8">
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" id="lastName" value="{{ user.last_name }}">
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="email" class="col-sm-3 col-form-label">Email</label>
-                    <div class="col-sm-8">
+                    <div class="col-sm-9">
                         <input type="email" class="form-control" id="email" value="{{ user.email }}">
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="about" class="col-sm-3 col-form-label">About</label>
-                    <div class="col-sm-8">
-                        <textarea class="form-control" id="about" rows="3">{{ user.about }}</textarea>
-                    </div>
-                </div>
-                <div class="row mb-3">
                     <label for="location" class="col-sm-3 col-form-label">Location</label>
-                    <div class="col-sm-8">
+                    <div class="col-sm-9">
                         <input type="text" class="form-control" id="location" value="{{ user.location }}">
                     </div>
                 </div>
                 <div class="row mb-3">
                     <label for="phoneNum" class="col-sm-3 col-form-label">Phone Number</label>
-                    <div class="col-sm-3">
+                    <div class="col-sm-9">
                         <input type="tel" class="form-control" id="phoneNum" value="{{ user.phone_number }}">
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <label for="about" class="col-sm-3 col-form-label">About</label>
+                    <div class="col-sm-9">
+                        <textarea class="form-control" id="about" rows="3">{{ user.about }}</textarea>
                     </div>
                 </div>
                 <div class="col-12 mt-4">
