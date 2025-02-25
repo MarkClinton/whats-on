@@ -4,6 +4,11 @@
     background-color: #009688;
 }
 
+.main-bg {
+    background-color: #009688;
+    border-radius: 5px;
+}
+
 .footer-bg {
     background-color: #009688;
 }
