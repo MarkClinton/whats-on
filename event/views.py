@@ -16,6 +16,11 @@ def event_create(request):
             event = event_form.save(commit=False)
             event.host = request.user
             event.save()
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                'Event Successfully Created'
+            )
 
     event_form = EventForm()
     return render(
