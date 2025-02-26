@@ -1,19 +1,28 @@
 from django.shortcuts import render
 from django.views import generic
+from django.contrib import messages
 from .models import Event
+from.forms import EventForm
 
 class EventList(generic.ListView):
     queryset = Event.objects.all()  # pylint: disable=no-member
     template_name = "event/search.html"
 
 def event_create(request):
-    queryset = Event.objects.all()  # pylint: disable=no-member
 
+    if request.method == "POST":
+        event_form = EventForm(data=request.POST)
+        if event_form.is_valid():
+            event = event_form.save(commit=False)
+            event.host = request.user
+            event.save()
+
+    event_form = EventForm()
     return render(
         request,
         "event/create.html",
         {
-            "event": queryset,
+            "event_form": event_form,
         },
     )
 
