@@ -1,14 +1,16 @@
 from django.shortcuts import render
 from django.views import generic
+from django.views.generic.edit import FormMixin
 from django.contrib import messages
 from django.core.paginator import Paginator
 from .models import Event, EventAttendees
-from.forms import EventForm
+from.forms import EventForm, SearchForm
 
-class EventList(generic.ListView):
+class EventList(generic.ListView, FormMixin):
     queryset = Event.objects.all()  # pylint: disable=no-member
     template_name = "event/search.html"
     paginate_by = 10
+    form_class = SearchForm
 
 def event_create(request):
 

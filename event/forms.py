@@ -1,5 +1,5 @@
 from django import forms
-from .models import Event
+from .models import Event, Category
 
 
 class EventForm(forms.ModelForm):
@@ -16,17 +16,22 @@ class EventForm(forms.ModelForm):
             'start_time', 'end_time', 'location', 'limit', 'enable_comments'
         )
 
-class SearchForm(forms.Form):
+class SearchForm(forms.ModelForm):
 
-    description = forms.CharField(widget=forms.Textarea(attrs={'rows' : '3'}))
-    date = forms.DateField(widget=forms.DateInput(attrs={'type' : 'date'}), label='Event Date')
-    start_time = forms.TimeField(widget=forms.TimeInput(attrs={'type' : 'time'}))
-    end_time = forms.TimeField(widget=forms.TimeInput(attrs={'type' : 'time'}))
+    CHOICES = (
+        (1, 'Today'),
+        (2, 'Tomorrow'),
+        (3, 'This Weekend'),
+        (4, 'Next Week'),
+    )
+
+    when = forms.ChoiceField(choices=CHOICES)
+    date = forms.DateField(widget=forms.DateInput(attrs={'type' : 'date'}), label='Pick a date')
+    location = forms.CharField()
 
     class Meta:
         model = Event
         fields = (
-            'event_title', 'description', 'category', 'event_image', 'date', 
-            'start_time', 'end_time', 'location', 'limit', 'enable_comments'
+            'when', 'date', 'location', 'category',
         )
         
