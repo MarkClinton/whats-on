@@ -8,6 +8,7 @@ from.forms import EventForm
 class EventList(generic.ListView):
     queryset = Event.objects.all()  # pylint: disable=no-member
     template_name = "event/search.html"
+    paginate_by = 10
 
 def event_create(request):
 
