@@ -6,7 +6,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <!-- Events -->
-        <div class="col-12 mt-5">
+        <div class="col-12 m-5">
             <h1>Hosting</h1>
             {% if events|length == 0 %}
             <div class="card">
@@ -37,10 +37,11 @@
             </div>
         </div>
 
-        <div class="pagination justify-content-center mt-4">
+        <hr>
+        <div class="pagination justify-content-center mt-2">
             <p><span class="step-links">
                     {% if page_obj.has_previous %}
-                    <a href="?page={{ page_obj.previous_page_number }}"><b>Previous</b></a>
+                    <a href="?page={{ page_obj.previous_page_number }}"><b>&laquo; Previous</b></a>
                     {% endif %}
 
                     <span class="current">
@@ -48,7 +49,7 @@
                     </span>
 
                     {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}"><b>Next</b></a>
+                    <a href="?page={{ page_obj.next_page_number }}"><b>Next &raquo;</b></a>
                     {% endif %}
                 </span></p>
         </div>
