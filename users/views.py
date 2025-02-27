@@ -8,7 +8,7 @@ def get_profile(request):
     user_profile = NewUser.objects.get(email=request.user.email)
 
     if request.method == "POST":
-        profile_form = ProfileForm(data=request.POST, instance=user_profile)
+        profile_form = ProfileForm(data=request.POST, files=request.FILES, instance=user_profile)
         if profile_form.is_valid():
             profile_form.save()
             messages.add_message(
