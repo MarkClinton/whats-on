@@ -32,10 +32,8 @@ def event_create(request):
     )
 
 def event_hosting(request):
-    try:
-        events = Event.objects.filter(host=request.user) # pylint: disable=no-member
-    except Event.DoesNotExist: # pylint: disable=no-member
-        events = None
+
+    events = Event.objects.filter(host=request.user) # pylint: disable=no-member
 
     return render(
         request,
