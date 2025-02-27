@@ -22,7 +22,7 @@
                 <div class="col">
                     <div class="card">
                         {% if "event_image" in event.event_image.url %}
-                        <img class="img-fluid rounded-start list-img" src="{% static 'images/pp.webp' %}"
+                        <img class="img-fluid rounded-start list-img" src="{% static 'images/default_event.webp' %}"
                             alt="placeholder image">
                         {% else %}
                         <img class="img-fluid rounded-start list-img" src=" {{ event.event_image.url }}"

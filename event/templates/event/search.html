@@ -24,8 +24,8 @@
                         <div class="row g-0">
                             <div class="col-md-4">
                                 {% if "event_image" in event.event_image.url %}
-                                <img class="img-fluid rounded-start list-img" src="{% static 'images/pp.webp' %}"
-                                    alt="placeholder image">
+                                <img class="img-fluid rounded-start list-img"
+                                    src="{% static 'images/default_event.webp' %}" alt="placeholder image">
                                 {% else %}
                                 <img class="img-fluid rounded-start list-img" src=" {{ event.event_image.url }}"
                                     alt="{{ event.event_title }}">
