@@ -6,6 +6,7 @@
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
 {% block content %}
+{% load crispy_forms_tags %}
 
 <div class="container">
   <div class="row">
@@ -20,18 +21,9 @@
     </div>
   </div>
   <div class="row">
-    <div class="col-md-6 mt-3 offset-md-3 text-center">
+    <div class="col-md-6 mt-3 offset-md-3">
       <form class="login" method="POST" action="{% url 'account_login' %}">
-
-        <div class="mb-3">
-          <label class="form-label" for="id_login">Email Address</label>
-          {{ form.login }}
-        </div>
-        <div class="mb-3">
-          <label class="form-label" for="id_password">Password</label>
-          {{ form.password }}
-        </div>
-
+        {{ form | crispy }}
         {% if redirect_field_value %}
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
         {% endif %}
