@@ -3,7 +3,6 @@
 
 {% block content %}
 
-<!-- index.html content starts here -->
 <div class="container">
     <div class="row justify-content-center">
         <!-- Events -->
@@ -39,21 +38,20 @@
         </div>
 
         <div class="pagination justify-content-center mt-4">
-            <span class="step-links">
-                {% if page_obj.has_previous %}
-                <a href="?page={{ page_obj.previous_page_number }}"><b>Previous</b></a>
-                {% endif %}
+            <p><span class="step-links">
+                    {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}"><b>Previous</b></a>
+                    {% endif %}
 
-                <span class="current">
-                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-                </span>
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                    </span>
 
-                {% if page_obj.has_next %}
-                <a href="?page={{ page_obj.next_page_number }}"><b>Next</b></a>
-                {% endif %}
-            </span>
+                    {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}"><b>Next</b></a>
+                    {% endif %}
+                </span></p>
         </div>
     </div>
 
-    <!-- index.html content ends here -->
     {% endblock %}

@@ -41,7 +41,21 @@
     font-weight: 400;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'Roboto', 'serif';
+    font-weight: 400;
+}
+
+p {
+    font-family: 'Roboto', 'serif';
+}
+
 a {
+    font-family: 'Roboto', 'serif';
     color: #009688;
     text-decoration: none;
 }

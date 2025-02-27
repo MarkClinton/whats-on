@@ -2,12 +2,12 @@ from django.shortcuts import render
 from django.views import generic
 from django.contrib import messages
 from django.core.paginator import Paginator
-from .models import Event
+from .models import Event, EventAttendees
 from.forms import EventForm
 
 class EventList(generic.ListView):
     queryset = Event.objects.all()  # pylint: disable=no-member
-    template_name = "event/hosting.html"
+    template_name = "event/search.html"
 
 def event_create(request):
 
@@ -50,12 +50,17 @@ def event_hosting(request):
     )
 
 def event_attending(request):
-    events = Event.objects.all()  # pylint: disable=no-member
+    attending_events = EventAttendees.objects.select_related("event").filter(attendee=request.user) # pylint: disable=no-member
+    paginator = Paginator(attending_events, 9)
+
+    page_number = request.GET.get("page")
+    page_obj = paginator.get_page(page_number)
 
     return render(
         request,
         "event/attending.html",
         {
-            "events": events,
+            "attending_events": attending_events,
+            "page_obj": page_obj,
         },
     )
