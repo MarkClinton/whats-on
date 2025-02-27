@@ -9,6 +9,13 @@
         <!-- Events -->
         <div class="col-12 mt-5">
             <h1>Hosting</h1>
+            {% if events|length == 0 %}
+            <div class="card">
+                <div class="card-body text-muted text-center">
+                    <h6>You are not hosting any events. <a href="{% url 'event_create' %}">Create an event?</a></h6>
+                </div>
+            </div>
+            {% endif %}
             <div class="row row-cols-3 row-cols-md-3 g-4">
                 {% for event in events %}
                 <div class="col">
@@ -29,7 +36,10 @@
                 </div>
                 {% endfor %}
             </div>
+
         </div>
+
+
 
         {% if is_paginated %}
         <nav aria-label="Page navigation">
