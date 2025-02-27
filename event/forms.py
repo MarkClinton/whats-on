@@ -1,4 +1,5 @@
 from django import forms
+from cloudinary.forms import CloudinaryFileField
 from .models import Event
 
 
@@ -8,6 +9,7 @@ class EventForm(forms.ModelForm):
     date = forms.DateField(widget=forms.DateInput(attrs={'type' : 'date'}), label='Event Date')
     start_time = forms.TimeField(widget=forms.TimeInput(attrs={'type' : 'time'}))
     end_time = forms.TimeField(widget=forms.TimeInput(attrs={'type' : 'time'}))
+    event_image = CloudinaryFileField()
 
     class Meta:
         model = Event

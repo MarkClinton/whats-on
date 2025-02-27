@@ -15,7 +15,8 @@ class EventList(generic.ListView, FormMixin):
 def event_create(request):
 
     if request.method == "POST":
-        event_form = EventForm(data=request.POST)
+        event_form = EventForm(data=request.POST, files=request.FILES)
+        print(event_form)
         if event_form.is_valid():
             event = event_form.save(commit=False)
             event.host = request.user
