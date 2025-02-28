@@ -9,6 +9,7 @@ def get_profile(request):
 
     if request.method == "POST":
         profile_form = ProfileForm(data=request.POST, files=request.FILES, instance=user_profile)
+
         if profile_form.is_valid():
             profile_form.save()
             messages.add_message(
@@ -16,6 +17,15 @@ def get_profile(request):
                 messages.SUCCESS,
                 'Profile Successfully Updated'
             )
+        else:
+            return render(
+                request,
+                "users/profile.html",
+                {
+                    "profile_form": profile_form,
+                },
+            )
+
 
     profile_form = ProfileForm(instance=user_profile)
     return render(
