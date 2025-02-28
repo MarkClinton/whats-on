@@ -42,88 +42,101 @@
 </head>
 
 <body class="d-flex flex-column h-100">
-    <nav class="navbar navbar-expand-lg header-bg">
-        <div class="container-fluid">
-            {% if user.is_authenticated %}
-            <a class="navbar-brand" href="{% url 'event_search' %}"><span class="brand">What'sOn.com</span></a>
-            {% else %}
-            <a class="navbar-brand" href="{% url 'home' %}"><span class="brand">What'sOn.com</span></a>
-            {% endif %}
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto me-4 mb-2 mb-lg-0">
-                    {% if user.is_authenticated %}
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle {% if request.path == event_host_url or request.path == event_attend_url %}active{% endif %}"
-                            href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            My Events
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{% url 'event_hosting' %}">Hosting</a></li>
-                            <li><a class="dropdown-item" href="{% url 'event_attending' %}">Attending</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == event_search_url %}active{% endif %}"
-                            aria-current="page" href="{% url 'event_search' %}">Search Events</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == event_create_url %}active{% endif %}"
-                            aria-current="page" href="{% url 'event_create' %}">Create
-                            Event</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        {% if "profile_image" in user.profile_image.url %}
-                        <img src="{% static 'images/pp.webp' %}" alt="Logo" class="header-img nav-link dropdown-toggle"
-                            href="#" role="button" data-bs-toggle="dropdown">
+    <header>
+        <nav class="navbar navbar-expand-lg header-bg">
+            <div class="container-fluid">
+                {% if user.is_authenticated %}
+                <a class="navbar-brand" href="{% url 'event_search' %}" aria-label="Go To Homepage">
+                    <span class="brand">What'sOn.com</span>
+                </a>
+                {% else %}
+                <a class="navbar-brand" href="{% url 'home' %}" aria-label="Go To Homepage">
+                    <span class="brand">What'sOn.com</span>
+                </a>
+                {% endif %}
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto me-4 mb-2 mb-lg-0">
+                        {% if user.is_authenticated %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle {% if request.path == event_host_url or request.path == event_attend_url %}active{% endif %}"
+                                href="#" aria-label="Toggle Dropdown" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                My Events
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" aria-label="Go To Hosted Events"
+                                        href="{% url 'event_hosting' %}">Hosting</a></li>
+                                <li><a class="dropdown-item" aria-label="Go To Attending Events"
+                                        href="{% url 'event_attending' %}">Attending</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == event_search_url %}active{% endif %}"
+                                aria-current="page" aria-label="Go To Search Events"
+                                href="{% url 'event_search' %}">Search Events</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == event_create_url %}active{% endif %}"
+                                aria-current="page" aria-label="Go Create Events" href="{% url 'event_create' %}">Create
+                                Event</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            {% if "profile_image" in user.profile_image.url %}
+                            <img src="{% static 'images/pp.webp' %}" alt="Logo"
+                                class="header-img nav-link dropdown-toggle" aria-label="Profile Picture" href="#"
+                                role="button" data-bs-toggle="dropdown">
+                            {% else %}
+                            <img src=" {{ user.profile_image.url }}" alt="Logo"
+                                class="header-img nav-link dropdown-toggle" aria-label="Profile Picture" href="#"
+                                role="button" data-bs-toggle="dropdown">
+                            {% endif %}
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                <li><a class="dropdown-item" aria-label="Go To User Profile"
+                                        href="{% url 'user_profile' %}">My Profile</a></li>
+                                <li><a class="dropdown-item" aria-label="Sign Out"
+                                        href="{% url 'account_logout' %}">Sign Out</a></li>
+                            </ul>
+                        </li>
                         {% else %}
-                        <img src=" {{ user.profile_image.url }}" alt="Logo" class="header-img nav-link dropdown-toggle"
-                            href="#" role="button" data-bs-toggle="dropdown">
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
+                                aria-label="Register User" href="{% url 'account_signup' %}">Register</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page"
+                                aria-label="Sign In" href="{% url 'account_login' %}">Sign In</a>
+                        </li>
                         {% endif %}
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li><a class="dropdown-item" href="{% url 'user_profile' %}">My Profile</a></li>
-                            <li><a class="dropdown-item" href="{% url 'account_logout' %}">Sign Out</a></li>
-                        </ul>
-                    </li>
-                    {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == signup_url %}active{% endif %}" aria-current="page"
-                            href="{% url 'account_signup' %}">Register</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link {% if request.path == login_url %}active{% endif %}" aria-current="page"
-                            href="{% url 'account_login' %}">Sign In</a>
-                    </li>
-                    {% endif %}
-                </ul>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
 
-    <div class="container">
+    <!-- Messages -->
+    <aside class="container">
         <div class="row">
             <div class="col-md-8 offset-md-2 mt-2">
                 {% for message in messages %}
                 <div class="alert alert-{{ message.tags }} alert-dismissible
                     fade show" id="msg" role="alert">
                     {{ message | safe }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close Message"></button>
                 </div>
                 {% endfor %}
             </div>
         </div>
-    </div>
+    </aside>
 
     <main class="flex-shrink-0">
-
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}
-
     </main>
 
     <!-- Footer -->
@@ -133,10 +146,13 @@
                 <div class="col-md-4 d-flex align-items-center">
                     <span class="mb-3 mb-md-0 brand">
                         {% if user.is_authenticated %}
-                        <a class="navbar-brand" href="{% url 'event_search' %}"><span
-                                class="brand">What'sOn.com</span></a>
+                        <a class="navbar-brand" href="{% url 'event_search' %}" aria-label="Go To Homepage">
+                            <span class="brand">What'sOn.com</span>
+                        </a>
                         {% else %}
-                        <a class="navbar-brand" href="{% url 'home' %}"><span class="brand">What'sOn.com</span></a>
+                        <a class="navbar-brand" href="{% url 'home' %}" aria-label="Go To Homepage">
+                            <span class="brand">What'sOn.com</span>
+                        </a>
                         {% endif %}
                     </span>
                 </div>
@@ -164,6 +180,7 @@
         </div>
     </div>
 
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
