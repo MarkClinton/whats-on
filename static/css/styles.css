@@ -20,6 +20,10 @@
     color: #ffc107;
 }
 
+.text-yellow {
+    color: #ffc107;
+}
+
 .header-img {
     height: 45px;
     width: 45px;
@@ -59,4 +63,25 @@ a {
     font-family: 'Roboto', 'serif';
     color: #009688;
     text-decoration: none;
+}
+
+.footer_content {
+    text-align: center;
+    margin: 5px auto;
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+}
+
+.footer_content i {
+    font-size: 125%;
+    color: #ffc107;
+}
+
+.footer_content i:hover {
+    font-size: 125%;
+    color: #009688;
+    box-shadow: inset 200px 0 0 0 #ffc107;
+    border-radius: 25%;
+    padding: 2px;
 }
