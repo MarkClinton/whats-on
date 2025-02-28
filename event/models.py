@@ -5,8 +5,9 @@ This model defines the Event, Comments and Categories models.
 """
 from django.db import models
 from django.contrib.auth import get_user_model
-from cloudinary.models import CloudinaryField
 from django.forms import ValidationError
+from cloudinary.models import CloudinaryField
+from datetime import date, datetime
 
 User = get_user_model()
 
@@ -48,7 +49,6 @@ class Event(models.Model):
     date = models.DateField()
     start_time = models.TimeField()
     end_time = models.TimeField()
-    # Look to update the location field to something better
     location = models.CharField(max_length=50)
     enable_comments = models.BooleanField(default=True)
     limit = models.IntegerField(blank=True, null=True)
@@ -60,6 +60,19 @@ class Event(models.Model):
         Specify the order of events
         """
         ordering = ["-created_at"]
+
+    def clean(self):
+        event_start = datetime.combine(self.date,self.start_time)
+        event_end = datetime.combine(self.date, self.end_time)
+
+        if event_end < event_start:
+            raise ValidationError(
+                {"end_time": "End time cannot be before start time"}
+            )
+        if event_end == event_start:
+            raise ValidationError(
+                {"end_time": "End time cannot be the same as start time"}
+            )
 
     def __str__(self):
         return f"{self.event_title} | created by {self.host}"

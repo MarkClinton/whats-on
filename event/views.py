@@ -25,6 +25,13 @@ def event_create(request):
                 messages.SUCCESS,
                 'Event Successfully Created'
             )
+        return render(
+        request,
+        "event/create.html",
+        {
+            "event_form": event_form,
+        },
+    )
 
     event_form = EventForm()
     return render(
