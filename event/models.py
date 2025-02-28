@@ -3,11 +3,11 @@ Event model
 
 This model defines the Event, Comments and Categories models. 
 """
+from datetime import date, datetime
 from django.db import models
 from django.contrib.auth import get_user_model
 from django.forms import ValidationError
 from cloudinary.models import CloudinaryField
-from datetime import date, datetime
 
 User = get_user_model()
 
@@ -62,7 +62,7 @@ class Event(models.Model):
         ordering = ["-created_at"]
 
     def clean(self):
-        event_start = datetime.combine(self.date,self.start_time)
+        event_start = datetime.combine(self.date, self.start_time)
         event_end = datetime.combine(self.date, self.end_time)
 
         if event_end < event_start:
@@ -72,6 +72,14 @@ class Event(models.Model):
         if event_end == event_start:
             raise ValidationError(
                 {"end_time": "End time cannot be the same as start time"}
+            )
+        if self.date < date.today():
+            raise ValidationError(
+                {"date": "Date cannot be in the past"}
+            )
+        if event_start < datetime.now():
+            raise ValidationError(
+                {"start_time": "The start time has passed"}
             )
 
     def __str__(self):

@@ -1,8 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse
 from django.views import generic
 from django.views.generic.edit import FormMixin
 from django.contrib import messages
 from django.core.paginator import Paginator
+from django.http import HttpResponseRedirect
 from .models import Event, EventAttendees
 from.forms import EventForm, SearchForm
 
@@ -25,6 +26,7 @@ def event_create(request):
                 messages.SUCCESS,
                 'Event Successfully Created'
             )
+            return HttpResponseRedirect(reverse('event_create'))
         return render(
         request,
         "event/create.html",
