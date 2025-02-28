@@ -65,21 +65,24 @@ class Event(models.Model):
         event_start = datetime.combine(self.date, self.start_time)
         event_end = datetime.combine(self.date, self.end_time)
 
-        if event_end < event_start:
-            raise ValidationError(
-                {"end_time": "End time cannot be before start time"}
-            )
-        if event_end == event_start:
-            raise ValidationError(
-                {"end_time": "End time cannot be the same as start time"}
-            )
         if self.date < date.today():
             raise ValidationError(
                 {"date": "Date cannot be in the past"}
             )
+
         if event_start < datetime.now():
             raise ValidationError(
                 {"start_time": "The start time has passed"}
+            )
+
+        if event_end < event_start:
+            raise ValidationError(
+                {"end_time": "End time cannot be before start time"}
+            )
+
+        if event_end == event_start:
+            raise ValidationError(
+                {"end_time": "End time cannot be the same as start time"}
             )
 
     def __str__(self):
