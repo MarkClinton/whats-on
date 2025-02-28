@@ -6,6 +6,7 @@ This model defines the Event, Comments and Categories models.
 from django.db import models
 from django.contrib.auth import get_user_model
 from cloudinary.models import CloudinaryField
+from django.forms import ValidationError
 
 User = get_user_model()
 

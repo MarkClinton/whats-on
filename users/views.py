@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, reverse
 from django.contrib import messages
+from django.http import HttpResponseRedirect
 from .models import NewUser
 from .forms import ProfileForm
 
@@ -16,14 +17,14 @@ def get_profile(request):
                 messages.SUCCESS,
                 'Profile Successfully Updated'
             )
-        else:
-            return render(
-                request,
-                "users/profile.html",
-                {
-                    "profile_form": profile_form,
-                },
-            )
+            return HttpResponseRedirect(reverse('user_profile'))
+        return render(
+            request,
+            "users/profile.html",
+            {
+                "profile_form": profile_form,
+            },
+        )
 
 
     profile_form = ProfileForm(instance=user_profile)
