@@ -63,6 +63,11 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto me-4 mb-2 mb-lg-0">
                         {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link {% if request.path == event_search_url %}active{% endif %}"
+                                aria-current="page" aria-label="Go To Search Events"
+                                href="{% url 'event_search' %}">Search Events</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle {% if request.path == event_host_url or request.path == event_attend_url %}active{% endif %}"
                                 href="#" aria-label="Toggle Dropdown" role="button" data-bs-toggle="dropdown"
@@ -75,11 +80,6 @@
                                 <li><a class="dropdown-item" aria-label="Go To Attending Events"
                                         href="{% url 'event_attending' %}">Attending</a></li>
                             </ul>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link {% if request.path == event_search_url %}active{% endif %}"
-                                aria-current="page" aria-label="Go To Search Events"
-                                href="{% url 'event_search' %}">Search Events</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% if request.path == event_create_url %}active{% endif %}"
