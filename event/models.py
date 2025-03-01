@@ -89,35 +89,6 @@ class Event(models.Model):
     def __str__(self):
         return f"{self.event_title} | created by {self.host}"
 
-
-class Comment(models.Model):
-    """
-    Defines the Comment model fields
-
-    :param models.Model: Django class to define data models
-    """
-    commenter = models.ForeignKey(
-        User, on_delete = models.CASCADE, related_name="commenter"
-    )
-    event = models.ForeignKey(
-        Event, on_delete = models.CASCADE, related_name="comments"
-    )
-    body = models.TextField()
-    is_host = models.BooleanField(default=False)
-    is_removed = models.BooleanField(default=False)
-    is_deleted = models.BooleanField(default=False)
-    is_pinned = models.BooleanField(default=False)
-    created_at = models.DateTimeField(auto_now_add=True)
-
-    class Meta:
-        """
-        Specify the order of comments
-        """
-        ordering = ["-created_at"]
-
-    def __str__(self):
-        return f"{self.body} by {self.commenter}"
-
 class EventAttendees(models.Model):
     """
     Defines the EventAttendees model fields
