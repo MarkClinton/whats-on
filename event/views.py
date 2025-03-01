@@ -60,15 +60,25 @@ def event_create(request):
         },
     )
 
-def event_edit(request):
+def event_edit(request, event_id):
     pass
 
-def event_delete(requests, event_id):
+def event_delete(request, event_id):
 
-    event_query = Event.objects.filter(id=event_id) # pylint: disable=no-member
+    event_query = Event.objects.all() # pylint: disable=no-member
+    event = get_object_or_404(event_query, id=event_id)
+
+    if event.host == request.user:
+        event.delete()
+        messages.add_message(request, messages.SUCCESS, 'Event successfully deleted.')
+    else:
+        messages.add_message(request, messages.ERROR, 'You cant delete someone elses event')
+
+    return HttpResponseRedirect(reverse('event_hosting'))
+
 
 def event_hosting(request):
-    
+
     events = Event.objects.filter(host=request.user) # pylint: disable=no-member
     # Filter for 2 batches of events: future events and past events
     # today = date.today()

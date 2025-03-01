@@ -9,6 +9,6 @@ urlpatterns = [
     path('', views.EventList.as_view(), name='event_search'),
     path('<int:event_id>/edit_event/',
         views.event_edit, name='event_edit'),
-    path('<int:event_id>/delete_event/',
+    path('<int:event_id>/event_delete/',
         views.event_delete, name='event_delete'),
 ]
