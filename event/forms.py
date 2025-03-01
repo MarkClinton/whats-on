@@ -1,6 +1,6 @@
 from django import forms
 from cloudinary.forms import CloudinaryFileField
-from .models import Event, EventAttendees
+from .models import Event
 
 
 class EventForm(forms.ModelForm):

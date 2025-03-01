@@ -53,11 +53,11 @@
                 </div>
                 {% endif %}
 
-                {% if user_attending %}
+                {% if user_attending%}
                 <div class="card-body">
                     <p class="card-text text-muted">You are going to this event</p>
                 </div>
-                {% else %}
+                {% elif user != event.host %}
                 <div class="card-body">
                     <a class="btn btn-success" href="{% url 'attend_event' event.id %}">Attend</a>
                 </div>
