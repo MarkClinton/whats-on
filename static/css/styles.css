@@ -1,51 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100..900&family=Sigmar&display=swap');
 
-.header-bg {
-    background-color: #009688;
-}
-
-.main-bg {
-    background-color: #009688;
-    border-radius: 5px;
-}
-
-.footer-bg {
-    background-color: #009688;
-}
-
-.brand {
-    font-family: "Sigmar", "serif";
-    font-weight: 400;
-    font-style: normal;
-    color: #ffc107;
-}
-
-.text-yellow {
-    color: #ffc107;
-}
-
-.header-img {
-    height: 45px;
-    width: 45px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.list-img {
-    height: 190px;
-    width: 100%;
-    object-fit: cover;
-}
-
-.list-bg {
-    background-color: #B2DFDB;
-}
-
-.navbar a {
-    font-family: "Roboto", "serif";
-    font-weight: 400;
-}
-
+/* General Styles */
 h1,
 h2,
 h3,
@@ -65,23 +20,54 @@ a {
     text-decoration: none;
 }
 
-.footer_content {
-    text-align: center;
-    margin: 5px auto;
-    display: flex;
-    justify-content: space-around;
-    list-style-type: none;
-}
-
-.footer_content i {
-    font-size: 125%;
+.text-yellow {
     color: #ffc107;
 }
 
-.footer_content i:hover {
-    font-size: 125%;
+/* Navbar Styling */
+.navbar a {
+    font-family: "Roboto", "serif";
+    font-weight: 400;
+}
+
+.brand {
+    font-family: "Sigmar", "serif";
+    font-weight: 400;
+    font-style: normal;
+    color: #ffc107;
+}
+
+.header-bg {
+    background-color: #009688;
+}
+
+.header-img {
+    height: 45px;
+    width: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* Main Generic Styling */
+.main-bg {
+    background-color: #009688;
+    border-radius: 5px;
+}
+
+.list-img {
+    height: 190px;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* Footer Styling */
+.footer-bg {
+    background-color: #009688;
+}
+
+li i:hover {
     color: #009688;
     box-shadow: inset 200px 0 0 0 #ffc107;
-    border-radius: 25%;
     padding: 2px;
+    border-radius: 25%;
 }
