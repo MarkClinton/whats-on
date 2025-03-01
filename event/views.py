@@ -1,23 +1,24 @@
+from datetime import date
 from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
 from django.views.generic.edit import FormMixin
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect
-from django.db.models import Count
 from .models import Event, EventAttendees
 from.forms import EventForm, SearchForm
 
 class EventList(generic.ListView, FormMixin):
-    queryset = Event.objects.all()  # pylint: disable=no-member
+    today = date.today()
+    queryset = Event.objects.filter(date__gte=today)  # pylint: disable=no-member
     template_name = "event/search.html"
     paginate_by = 10
     form_class = SearchForm
 
 def event_detail(request, event_id):
-    queryset = Event.objects.all() # pylint: disable=no-member
+    event_query = Event.objects.all() # pylint: disable=no-member
     attendee_count = EventAttendees.objects.filter(event=event_id).count() # pylint: disable=no-member
-    event = get_object_or_404(queryset, id=event_id)
+    event = get_object_or_404(event_query, id=event_id)
 
     return render(
         request,
@@ -59,11 +60,22 @@ def event_create(request):
         },
     )
 
+def event_edit(request):
+    pass
+
+def event_delete(requests, event_id):
+
+    event_query = Event.objects.filter(id=event_id) # pylint: disable=no-member
+
 def event_hosting(request):
-
+    
     events = Event.objects.filter(host=request.user) # pylint: disable=no-member
-    paginator = Paginator(events, 9)
+    # Filter for 2 batches of events: future events and past events
+    # today = date.today()
+    # future_events = events.filter(date__gte=today)
+    # past_events = events.filter(date__lt=today)
 
+    paginator = Paginator(events, 9)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 

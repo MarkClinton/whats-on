@@ -52,6 +52,7 @@ class Event(models.Model):
     location = models.CharField(max_length=50)
     enable_comments = models.BooleanField(default=True)
     limit = models.IntegerField(blank=True, null=True)
+    is_deleted = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     last_updated = models.DateTimeField(auto_now=True)
 

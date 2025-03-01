@@ -39,7 +39,7 @@
                     <h6 class="card-title">Event Details</h6>
                     <p class="card-text">{{ event.description }}</p>
                 </div>
-                {% if event.limit != None%}
+                {% if event.limit != None %}
                 <div class="card-body">
                     <small>
                         <p class="card-text text-muted"> This event has a limit of {{ event.limit }} attendees</p>
@@ -48,8 +48,8 @@
                 {% endif %}
                 {% if user == event.host %}
                 <div class="card-body">
-                    <button class="btn btn-danger btn-sm">Delete</button>
-                    <button class="btn btn-primary btn-sm">Edit</button>
+                    <button class="btn btn-danger btn-sm" id="event_delete" event-id="{{ event.id }}">Delete</button>
+                    <button class="btn btn-primary btn-sm" id="event_edit" event-id="{{ event.id }}">Edit</button>
                 </div>
                 {% endif %}
             </div>
