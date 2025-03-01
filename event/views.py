@@ -79,6 +79,13 @@ def event_edit(request, event_id):
                 'Event Successfully Updated'
             )
             return HttpResponseRedirect(reverse('event_detail', args=[event_id]))
+        return render(
+        request,
+        "event/event_edit.html",
+        {
+            "event_form": event_form,
+        },
+    )
 
     event_form = EventForm(instance=event)
     return render(

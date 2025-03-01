@@ -62,6 +62,13 @@ class Event(models.Model):
         """
         ordering = ["-created_at"]
 
+    def add_user_to_event(self, user):
+            EventAttendees.objects.create( # pylint: disable=no-member
+                event = self,
+                attendee = user,
+                rsvp = 1,
+    )
+
     def clean(self):
         event_start = datetime.combine(self.date, self.start_time)
         event_end = datetime.combine(self.date, self.end_time)
@@ -85,13 +92,6 @@ class Event(models.Model):
             raise ValidationError(
                 {"end_time": "End time cannot be the same as start time"}
             )
-
-    def add_user_to_event(self, user):
-        EventAttendees.objects.create( # pylint: disable=no-member
-            event = self,
-            attendee = user,
-            rsvp = 1,
-        )
 
     def __str__(self):
         return f"{self.event_title} | created by {self.host}"
