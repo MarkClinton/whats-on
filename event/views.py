@@ -11,6 +11,7 @@ from.forms import EventForm, SearchForm
 class EventList(generic.ListView, FormMixin):
     today = date.today()
     queryset = Event.objects.filter(date__gte=today)  # pylint: disable=no-member
+    ordering = ['date']
     template_name = "event/search.html"
     paginate_by = 10
     form_class = SearchForm
@@ -61,7 +62,28 @@ def event_create(request):
     )
 
 def event_edit(request, event_id):
-    pass
+    event_query = Event.objects.all() # pylint: disable=no-member
+    event = get_object_or_404(event_query, id=event_id)
+
+    if request.method == "POST":
+        event_form = EventForm(data=request.POST, files=request.FILES, instance=event)
+        if event_form.is_valid():
+            event_form.save()
+            messages.add_message(
+                request,
+                messages.SUCCESS,
+                'Event Successfully Updated'
+            )
+            return HttpResponseRedirect(reverse('event_detail', args=[event_id]))
+
+    event_form = EventForm(instance=event)
+    return render(
+        request,
+        "event/event_edit.html",
+        {
+            "event_form": event_form,
+        },
+    )
 
 def event_delete(request, event_id):
 

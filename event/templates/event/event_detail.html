@@ -4,8 +4,8 @@
 {% block content %}
 
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-4 offset-1 my-5">
+    <div class="row justify-content-center">
+        <div class="col-10 col-md-8 col-xl-5 my-5">
             <div class="card mb-3">
                 {% if "event_image" in event.event_image.url %}
                 <img class="img-fluid rounded-start detail-img" src="{% static 'images/default_event.webp' %}"
@@ -48,8 +48,8 @@
                 {% endif %}
                 {% if user == event.host %}
                 <div class="card-body">
-                    <button class="btn btn-danger btn-sm" id="eventDelete" event_id="{{ event.id }}">Delete</button>
-                    <button class="btn btn-primary btn-sm" id="event_edit" event_id="{{ event.id }}">Edit</button>
+                    <button class="btn btn-danger" id="eventDelete" event_id="{{ event.id }}">Delete</button>
+                    <a class="btn btn-primary" href="{% url 'event_edit' event.id %}">Edit</a>
                 </div>
                 {% endif %}
             </div>
