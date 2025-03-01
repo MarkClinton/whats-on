@@ -18,14 +18,18 @@ class EventList(generic.ListView, FormMixin):
 
 def event_detail(request, event_id):
     event_query = Event.objects.all() # pylint: disable=no-member
-    attendee_count = EventAttendees.objects.filter(event=event_id).count() # pylint: disable=no-member
     event = get_object_or_404(event_query, id=event_id)
+
+    attendee_list = EventAttendees.objects.filter(event=event_id).select_related('attendee') # pylint: disable=no-member
+    attendee_count = attendee_list.count()
+    user_attending = attendee_list.filter(attendee=request.user).exists()
 
     return render(
         request,
         "event/event_detail.html",
         {
             "event": event,
+            "user_attending": user_attending,
             "attendee_count": attendee_count,
         }
     )
@@ -135,3 +139,8 @@ def event_attending(request):
             "page_obj": page_obj,
         },
     )
+
+def attend_event(request, event_id):
+    event = Event.objects.get(id=event_id) # pylint: disable=no-member
+    event.add_user_to_event(user=request.user)
+    return HttpResponseRedirect(reverse('event_detail', args=[event_id]))

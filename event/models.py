@@ -86,6 +86,13 @@ class Event(models.Model):
                 {"end_time": "End time cannot be the same as start time"}
             )
 
+    def add_user_to_event(self, user):
+        EventAttendees.objects.create( # pylint: disable=no-member
+            event = self,
+            attendee = user,
+            rsvp = 1,
+        )
+
     def __str__(self):
         return f"{self.event_title} | created by {self.host}"
 

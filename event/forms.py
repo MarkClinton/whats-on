@@ -1,6 +1,6 @@
 from django import forms
 from cloudinary.forms import CloudinaryFileField
-from .models import Event
+from .models import Event, EventAttendees
 
 
 class EventForm(forms.ModelForm):
@@ -36,4 +36,3 @@ class SearchForm(forms.ModelForm):
         fields = (
             'when', 'date', 'location', 'category',
         )
-        

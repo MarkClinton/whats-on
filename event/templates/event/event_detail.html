@@ -52,6 +52,16 @@
                     <a class="btn btn-primary" href="{% url 'event_edit' event.id %}">Edit</a>
                 </div>
                 {% endif %}
+
+                {% if user_attending %}
+                <div class="card-body">
+                    <p class="card-text text-muted">You are going to this event</p>
+                </div>
+                {% else %}
+                <div class="card-body">
+                    <a class="btn btn-success" href="{% url 'attend_event' event.id %}">Attend</a>
+                </div>
+                {% endif %}
             </div>
         </div>
     </div>
