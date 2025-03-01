@@ -10,6 +10,10 @@ h5 {
     font-weight: 400;
 }
 
+span {
+    font-family: 'Roboto', 'serif';
+}
+
 p {
     font-family: 'Roboto', 'serif';
 }
@@ -22,6 +26,10 @@ a {
 
 .text-yellow {
     color: #ffc107;
+}
+
+.text-green {
+    color: #009688;
 }
 
 /* Navbar Styling */
@@ -54,10 +62,22 @@ a {
     border-radius: 5px;
 }
 
-.list-img {
-    height: 190px;
+.list-img,
+.detail-img {
     width: 100%;
     object-fit: cover;
+}
+
+.list-img {
+    height: 190px;
+}
+
+.detail-img {
+    height: 300px;
+}
+
+i {
+    font-family: "Roboto", "serif";
 }
 
 /* Footer Styling */
@@ -65,7 +85,7 @@ a {
     background-color: #009688;
 }
 
-li i:hover {
+.footer-links i:hover {
     color: #009688;
     box-shadow: inset 200px 0 0 0 #ffc107;
     padding: 2px;

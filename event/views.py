@@ -1,9 +1,10 @@
-from django.shortcuts import render, reverse
+from django.shortcuts import render, get_object_or_404, reverse
 from django.views import generic
 from django.views.generic.edit import FormMixin
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect
+from django.db.models import Count
 from .models import Event, EventAttendees
 from.forms import EventForm, SearchForm
 
@@ -12,6 +13,20 @@ class EventList(generic.ListView, FormMixin):
     template_name = "event/search.html"
     paginate_by = 10
     form_class = SearchForm
+
+def event_detail(request, event_id):
+    queryset = Event.objects.all() # pylint: disable=no-member
+    attendee_count = EventAttendees.objects.filter(event=event_id).count() # pylint: disable=no-member
+    event = get_object_or_404(queryset, id=event_id)
+
+    return render(
+        request,
+        "event/event_detail.html",
+        {
+            "event": event,
+            "attendee_count": attendee_count,
+        }
+    )
 
 def event_create(request):
 

@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-4 offset-1 my-5">
+            <div class="card mb-3">
+                {% if "event_image" in event.event_image.url %}
+                <img class="img-fluid rounded-start detail-img" src="{% static 'images/default_event.webp' %}"
+                    aria-label="Profile Picture" alt="placeholder image">
+                {% else %}
+                <img class="img-fluid rounded-start detail-img" src=" {{ event.event_image.url }}"
+                    aria-label="Profile Picture" alt="{{ event.event_title }}">
+                {% endif %}
+                <div class="card-body">
+                    <h4 class="card-title">{{ event.event_title }}</h4>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">
+                        <span><i class="fa-solid fa-calendar-days text-green"></i></span>
+                        {{ event.date }} @ {{ event.start_time }}
+                    </p>
+                    <p class="card-text">
+                        <span><i class="fa-solid fa-location-dot text-green"></i></span>
+                        {{ event.location }}
+                    </p>
+                    <p class="card-text">
+                        <span><i class="fa-solid fa-layer-group text-green"></i></span>
+                        {{ event.category }}
+                    </p>
+                    <p class="card-text">
+                        <span><i class="fa-solid fa-users text-green"></i></span>
+                        {{ attendee_count }}
+                    </p>
+                </div>
+                <div class="card-body">
+                    <h6 class="card-title">Event Details</h6>
+                    <p class="card-text">{{ event.description }}</p>
+                </div>
+                {% if event.limit != None%}
+                <div class="card-body">
+                    <small>
+                        <p class="card-text text-muted"> This event has a limit of {{ event.limit }} attendees</p>
+                    </small>
+                </div>
+                {% endif %}
+                {% if user == event.host %}
+                <div class="card-body">
+                    <button class="btn btn-danger btn-sm">Delete</button>
+                    <button class="btn btn-primary btn-sm">Edit</button>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
