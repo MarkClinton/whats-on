@@ -11,7 +11,8 @@
             {% if attending_events|length == 0 %}
             <div class="card">
                 <div class="card-body text-muted text-center">
-                    <h6>You are not going to any events. <a href="{% url 'event_search' %}">Search for an event?</a>
+                    <h6>You are not going to any events. <a href="{% url 'event_search' %}"
+                            aria-label="Go To Search Events">Search for an event?</a>
                     </h6>
                 </div>
             </div>
@@ -23,10 +24,10 @@
                     <div class="card">
                         {% if "event_image" in event.event_image.url %}
                         <img class="img-fluid rounded-start list-img" src="{% static 'images/default_event.webp' %}"
-                            alt="placeholder image">
+                            aria-label="Profile Picture" alt="placeholder image">
                         {% else %}
                         <img class="img-fluid rounded-start list-img" src=" {{ event.event_image.url }}"
-                            alt="{{ event.event_title }}">
+                            aria-label="Profile Picture" alt="{{ event.event_title }}">
                         {% endif %}
                         <div class="card-body">
                             <h5 class="card-title">{{event.event_title}}</h5>
@@ -44,7 +45,7 @@
         <div class="pagination justify-content-center mt-2">
             <p><span class="step-links">
                     {% if page_obj.has_previous %}
-                    <a href="?page={{ page_obj.previous_page_number }}"><b>Previous</b></a>
+                    <a href="?page={{ page_obj.previous_page_number }}" aria-label="Previous Page"><b>Previous</b></a>
                     {% endif %}
 
                     <span class="current">
@@ -52,7 +53,7 @@
                     </span>
 
                     {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}"><b>Next</b></a>
+                    <a href="?page={{ page_obj.next_page_number }}" aria-label="Next Page"><b>Next</b></a>
                     {% endif %}
                 </span></p>
         </div>

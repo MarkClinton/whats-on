@@ -25,10 +25,11 @@
                             <div class="col-md-4">
                                 {% if "event_image" in event.event_image.url %}
                                 <img class="img-fluid rounded-start list-img"
-                                    src="{% static 'images/default_event.webp' %}" alt="placeholder image">
+                                    src="{% static 'images/default_event.webp' %}" aria-label="Profile Picture"
+                                    alt="placeholder image">
                                 {% else %}
                                 <img class="img-fluid rounded-start list-img" src=" {{ event.event_image.url }}"
-                                    alt="{{ event.event_title }}">
+                                    aria-label="Profile Picture" alt="{{ event.event_title }}">
                                 {% endif %}
                             </div>
                             <div class="col-md-8">
@@ -49,7 +50,8 @@
             <div class="pagination justify-content-center mt-2">
                 <p><span class="step-links">
                         {% if page_obj.has_previous %}
-                        <a href="?page={{ page_obj.previous_page_number }}"><b>Previous</b></a>
+                        <a href="?page={{ page_obj.previous_page_number }}"
+                            aria-label="Previous Page"><b>Previous</b></a>
                         {% endif %}
 
                         <span class="current">
@@ -57,7 +59,7 @@
                         </span>
 
                         {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}"><b>Next</b></a>
+                        <a href="?page={{ page_obj.next_page_number }}" aria-label="Next Page"><b>Next</b></a>
                         {% endif %}
                     </span></p>
             </div>
