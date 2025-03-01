@@ -9,7 +9,7 @@ class EventForm(forms.ModelForm):
     date = forms.DateField(widget=forms.DateInput(attrs={'type' : 'date'}), label='Event Date')
     start_time = forms.TimeField(widget=forms.TimeInput(attrs={'type' : 'time'}))
     end_time = forms.TimeField(widget=forms.TimeInput(attrs={'type' : 'time'}))
-    event_image = CloudinaryFileField()
+    event_image = CloudinaryFileField(required=False)
 
     class Meta:
         model = Event
