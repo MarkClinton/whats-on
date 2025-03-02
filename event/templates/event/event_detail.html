@@ -51,7 +51,12 @@
                 {% if user == event.host %}
                 <div class="card-body">
                     <button class="btn btn-danger" id="eventDelete" event_id="{{ event.id }}">Delete</button>
+                    {% if in_the_past %}
+                    <p class="card-text text-muted"> <small class="text-body-secondary">This event has already
+                            happened</small></p>
+                    {% else %}
                     <a class="btn btn-primary" href="{% url 'event_edit' event.id %}">Edit</a>
+                    {% endif %}
                 </div>
                 {% endif %}
 
