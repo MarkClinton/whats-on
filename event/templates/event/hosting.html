@@ -6,10 +6,10 @@
 <div class="container">
 
     <div class="nav nav-tabs my-5" id="nav-tab" role="tablist">
-        <a class="nav-link active" id="nav-one-tab" data-bs-toggle="tab" data-bs-target="#future" type="button"
-            role="tab" aria-controls="nav-one" aria-selected="true">Upcoming Events</a>
-        <a class="nav-link" id="nav-two-tab" data-bs-toggle="tab" data-bs-target="#past" type="button" role="tab"
-            aria-controls="nav-two" aria-selected="false">Past Events</a>
+        <a class="nav-link text-green active" id="nav-one-tab" data-bs-toggle="tab" data-bs-target="#future"
+            type="button" role="tab" aria-controls="nav-one" aria-selected="true">Upcoming Events</a>
+        <a class="nav-link text-green" id="nav-two-tab" data-bs-toggle="tab" data-bs-target="#past" type="button"
+            role="tab" aria-controls="nav-two" aria-selected="false">Past Events</a>
     </div>
 
     <div class="tab-content" id="nav-tabContent">
@@ -77,11 +77,10 @@
             <div class="row justify-content-center">
                 <!-- Events -->
                 <div class="col-12 mt-2 mb-5">
-                    {% if is_events_none %}
+                    {% if is_past_events_none %}
                     <div class="card">
                         <div class="card-body text-muted text-center">
-                            <h6>You are not hosting any events. <a href="{% url 'event_create' %}"
-                                    aria-label="Go To Create Event">Create an event?</a></h6>
+                            <h6>No past events.</h6>
                         </div>
                     </div>
                     {% endif %}

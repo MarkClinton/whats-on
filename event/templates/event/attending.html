@@ -4,60 +4,112 @@
 {% block content %}
 
 <div class="container">
-    <div class="row justify-content-center">
-        <!-- Events -->
-        <div class="col-12 m-5">
-            <h1>Attending</h1>
-            {% if is_events_none %}
-            <div class="card">
-                <div class="card-body text-muted text-center">
-                    <h6>You are not going to any events. <a href="{% url 'event_search' %}"
-                            aria-label="Go To Search Events">Search for an event?</a>
-                    </h6>
-                </div>
-            </div>
-            {% endif %}
-            <div class="row row-cols-3 row-cols-md-3 g-4">
-                {% for attending in page_obj %}
-                {% with event=attending.event %}
-                <div class="col">
-                    <a href="{% url 'event_detail' event.id %}">
-                        <div class="card">
-                            {% if "event_image" in event.event_image.url %}
-                            <img class="img-fluid rounded-start list-img" src="{% static 'images/default_event.webp' %}"
-                                aria-label="Profile Picture" alt="placeholder image">
-                            {% else %}
-                            <img class="img-fluid rounded-start list-img" src=" {{ event.event_image.url }}"
-                                aria-label="Profile Picture" alt="{{ event.event_title }}">
-                            {% endif %}
-                            <div class="card-body">
-                                <h5 class="card-title">{{event.event_title}}</h5>
-                                <p class="card-text">{{ event.description}}</p>
-                                <p class="card-text"><small class="text-body-secondary">{{event.date}}</small></p>
-                            </div>
+
+    <div class="nav nav-tabs my-5" id="nav-tab" role="tablist">
+        <a class="nav-link text-green active" id="nav-one-tab" data-bs-toggle="tab" data-bs-target="#future"
+            type="button" role="tab" aria-controls="nav-one" aria-selected="true">Upcoming Events</a>
+        <a class="nav-link text-green" id="nav-two-tab" data-bs-toggle="tab" data-bs-target="#past" type="button"
+            role="tab" aria-controls="nav-two" aria-selected="false">Past Events</a>
+    </div>
+
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="future" role="tabpanel" aria-labelledby="nav-one-tab" tabindex="0">
+            <div class="row justify-content-center">
+                <!-- Events -->
+                <div class="col-12 mt-2 mb-5">
+                    {% if is_events_none %}
+                    <div class="card">
+                        <div class="card-body text-muted text-center">
+                            <h6>You are not attending any events. <a href="{% url 'event_search' %}"
+                                    aria-label="Go To Create Event">Search for events?</a></h6>
                         </div>
-                    </a>
+                    </div>
+                    {% endif %}
+                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                        {% for event in page_obj %}
+                        <div class="col">
+                            <a href="{% url 'event_detail' event.id %}">
+                                <div class="card">
+                                    {% if "event_image" in event.event_image.url %}
+                                    <img class="img-fluid rounded-start list-img"
+                                        src="{% static 'images/default_event.webp' %}" aria-label="Profile Picture"
+                                        alt="placeholder image">
+                                    {% else %}
+                                    <img class="img-fluid rounded-start list-img" src=" {{ event.event_image.url }}"
+                                        aria-label="Profile Picture" alt="{{ event.event_title }}">
+                                    {% endif %}
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{event.event_title}}</h5>
+                                        <p class="card-text">{{ event.description}}</p>
+                                        <p class="card-text"><small class="text-body-secondary">{{event.date}}</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
                 </div>
-                {% endwith %}
-                {% endfor %}
+                <hr>
+                <div class="pagination justify-content-center mt-2">
+                    <p><span class="step-links">
+                            {% if page_obj.has_previous %}
+                            <a href="?page={{ page_obj.previous_page_number }}" aria-label="Previous Page"><b>&laquo;
+                                    Previous</b></a>
+                            {% endif %}
+
+                            <span class="current">
+                                Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                            </span>
+
+                            {% if page_obj.has_next %}
+                            <a href="?page={{ page_obj.next_page_number }}" aria-label="Next Page"><b>Next
+                                    &raquo;</b></a>
+                            {% endif %}
+                        </span></p>
+                </div>
             </div>
         </div>
+    </div>
 
-        <hr>
-        <div class="pagination justify-content-center mt-2">
-            <p><span class="step-links">
-                    {% if page_obj.has_previous %}
-                    <a href="?page={{ page_obj.previous_page_number }}" aria-label="Previous Page"><b>Previous</b></a>
+    <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show" id="past" role="tabpanel" aria-labelledby="nav-one-tab" tabindex="0">
+            <div class="row justify-content-center">
+                <!-- Events -->
+                <div class="col-12 mt-2 mb-5">
+                    {% if is_past_events_none %}
+                    <div class="card">
+                        <div class="card-body text-muted text-center">
+                            <h6>No past events.</h6>
+                        </div>
+                    </div>
                     {% endif %}
-
-                    <span class="current">
-                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-                    </span>
-
-                    {% if page_obj.has_next %}
-                    <a href="?page={{ page_obj.next_page_number }}" aria-label="Next Page"><b>Next</b></a>
-                    {% endif %}
-                </span></p>
+                    <div class="row row-cols-1 row-cols-md-3 g-4">
+                        {% for event in past_events %}
+                        <div class="col">
+                            <a href="{% url 'event_detail' event.id %}">
+                                <div class="card">
+                                    {% if "event_image" in event.event_image.url %}
+                                    <img class="img-fluid rounded-start list-img"
+                                        src="{% static 'images/default_event.webp' %}" aria-label="Profile Picture"
+                                        alt="placeholder image">
+                                    {% else %}
+                                    <img class="img-fluid rounded-start list-img" src=" {{ event.event_image.url }}"
+                                        aria-label="Profile Picture" alt="{{ event.event_title }}">
+                                    {% endif %}
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{event.event_title}}</h5>
+                                        <p class="card-text">{{ event.description}}</p>
+                                        <p class="card-text"><small class="text-body-secondary">{{event.date}}</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 

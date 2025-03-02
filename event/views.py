@@ -126,6 +126,7 @@ def event_hosting(request):
     past_events = events.filter(date__lt=today)
 
     is_events_none = events.count() == 0
+    is_past_events_none = past_events.count() == 0
 
     paginator = Paginator(future_events, 9)
     page_number = request.GET.get("page")
@@ -137,16 +138,23 @@ def event_hosting(request):
         {
             "page_obj": page_obj,
             "past_events": past_events,
-            "is_events_none": is_events_none
+            "is_events_none": is_events_none,
+            "is_past_events_none": is_past_events_none,
         },
     )
 
 def event_attending(request):
-    attending_events = EventAttendees.objects.select_related("event").filter(attendee=request.user) # pylint: disable=no-member
 
-    is_events_none = attending_events.count() == 0
+    attending_events = Event.objects.filter(attending__attendee=request.user) # pylint: disable=no-member
 
-    paginator = Paginator(attending_events, 9)
+    today = date.today()
+    future_events = attending_events.filter(date__gte=today)
+    past_events = attending_events.filter(date__lt=today)
+
+    is_events_none = future_events.count() == 0
+    is_past_events_none = past_events.count() == 0
+
+    paginator = Paginator(future_events, 9)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
@@ -154,18 +162,19 @@ def event_attending(request):
         request,
         "event/attending.html",
         {
-            "attending_events": attending_events,
             "page_obj": page_obj,
+            "past_events": past_events,
             "is_events_none": is_events_none,
+            "is_past_events_none": is_past_events_none,
         },
     )
 
 def attend_event(request, event_id):
     event = Event.objects.get(id=event_id) # pylint: disable=no-member
     event.add_user_to_event(user=request.user)
-    return HttpResponseRedirect(reverse('event_detail', args=[event_id]))
+    return HttpResponseRedirect(reverse('event_attending'))
 
 def remove_attend_event(request, event_id):
     event = EventAttendees.objects.get(event=event_id, attendee=request.user) # pylint: disable=no-member
     event.delete()
-    return HttpResponseRedirect(reverse('event_detail', args=[event_id]))
+    return HttpResponseRedirect(reverse('event_attending'))
