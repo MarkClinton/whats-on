@@ -121,11 +121,13 @@ def event_hosting(request):
 
     events = Event.objects.filter(host=request.user) # pylint: disable=no-member
     # Filter for 2 batches of events: future events and past events
-    # today = date.today()
-    # future_events = events.filter(date__gte=today)
-    # past_events = events.filter(date__lt=today)
+    today = date.today()
+    future_events = events.filter(date__gte=today)
+    past_events = events.filter(date__lt=today)
 
-    paginator = Paginator(events, 9)
+    is_events_none = events.count() == 0
+
+    paginator = Paginator(future_events, 9)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
@@ -133,15 +135,18 @@ def event_hosting(request):
         request,
         "event/hosting.html",
         {
-            "events": events,
             "page_obj": page_obj,
+            "past_events": past_events,
+            "is_events_none": is_events_none
         },
     )
 
 def event_attending(request):
     attending_events = EventAttendees.objects.select_related("event").filter(attendee=request.user) # pylint: disable=no-member
-    paginator = Paginator(attending_events, 9)
 
+    is_events_none = attending_events.count() == 0
+
+    paginator = Paginator(attending_events, 9)
     page_number = request.GET.get("page")
     page_obj = paginator.get_page(page_number)
 
@@ -151,6 +156,7 @@ def event_attending(request):
         {
             "attending_events": attending_events,
             "page_obj": page_obj,
+            "is_events_none": is_events_none,
         },
     )
 
