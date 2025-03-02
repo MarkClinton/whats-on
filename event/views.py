@@ -78,6 +78,7 @@ def event_edit(request, event_id):
 
     if request.method == "POST":
         event_form = EventForm(data=request.POST, files=request.FILES, instance=event)
+
         if event_form.is_valid():
             event_form.save()
             messages.add_message(

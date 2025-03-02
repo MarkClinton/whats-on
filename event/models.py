@@ -70,28 +70,29 @@ class Event(models.Model):
         )
 
     def clean(self):
+
+        errors = {}
+
+        if self.limit is not None and self.pk:
+            attendees = EventAttendees.objects.filter(event=self).count()
+            if self.limit < attendees:
+                errors["limit"] = "Event limit cannot be less than number of attendees"
+
         event_start = datetime.combine(self.date, self.start_time)
         event_end = datetime.combine(self.date, self.end_time)
+        now = datetime.now()
 
         if self.date < date.today():
-            raise ValidationError(
-                {"date": "Date cannot be in the past"}
-            )
+            errors["date"] = "Date cannot be in the past"
 
-        if event_start < datetime.now():
-            raise ValidationError(
-                {"start_time": "The start time has passed"}
-            )
+        if event_start < now:
+            errors["start_time"] = "The start time has passed"
 
-        if event_end < event_start:
-            raise ValidationError(
-                {"end_time": "End time cannot be before start time"}
-            )
+        if event_end <= event_start:
+            errors["end_time"] = "End time must be after start time"
 
-        if event_end == event_start:
-            raise ValidationError(
-                {"end_time": "End time cannot be the same as start time"}
-            )
+        if errors:
+            raise ValidationError(errors)
 
     def __str__(self):
         return f"{self.event_title} | created by {self.host}"

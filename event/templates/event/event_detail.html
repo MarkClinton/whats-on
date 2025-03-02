@@ -5,7 +5,7 @@
 
 <div class="container-fluid">
     <div class="row justify-content-center">
-        <div class="col-10 col-md-8 col-xl-5 my-5">
+        <div class="col-12 col-xl-8 col-xxl-5 my-5">
             <div class="card mb-3">
                 {% if "event_image" in event.event_image.url %}
                 <img class="img-fluid rounded-start detail-img" src="{% static 'images/default_event.webp' %}"
@@ -28,7 +28,7 @@
                     </p>
                     <p class="card-text">
                         <span><i class="fa-solid fa-calendar-days text-green"></i></span>
-                        {{ event.date }} @ {{ event.start_time }}
+                        {{ event.date }} @ {{ event.start_time }} until {{ event.end_time }}
                     </p>
                     <p class="card-text">
                         <span><i class="fa-solid fa-location-dot text-green"></i></span>
