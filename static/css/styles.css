@@ -81,8 +81,8 @@ i {
 }
 
 /* Hide field from cloudinary. not needed */
-#div_id_profile_image,
-#div_id_event_image div:first-of-type {
+#div_id_profile_image .input-group:first-of-type,
+#div_id_event_image .input-group:first-of-type {
     display: none !important;
 }
 
