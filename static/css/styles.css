@@ -80,6 +80,12 @@ i {
     font-family: "Roboto", "serif";
 }
 
+/* Hide field from cloudinary. not needed */
+#div_id_profile_image,
+#div_id_event_image div:first-of-type {
+    display: none !important;
+}
+
 /* Footer Styling */
 .footer-bg {
     background-color: #009688;
