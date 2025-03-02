@@ -20,6 +20,10 @@
                 <div class="card-body">
                     <p class="card-text">
                         <span><i class="fa-solid fa-calendar-days text-green"></i></span>
+                        {{ event.host }}
+                    </p>
+                    <p class="card-text">
+                        <span><i class="fa-solid fa-calendar-days text-green"></i></span>
                         {{ event.date }} @ {{ event.start_time }}
                     </p>
                     <p class="card-text">
@@ -53,7 +57,7 @@
                 </div>
                 {% endif %}
 
-                {% if user_attending%}
+                {% if is_user_attending%}
                 <div class="card-body">
                     <p class="card-text text-muted">You are going to this event</p>
                 </div>

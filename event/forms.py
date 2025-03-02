@@ -15,7 +15,7 @@ class EventForm(forms.ModelForm):
         model = Event
         fields = (
             'event_title', 'description', 'category', 'event_image', 'date', 
-            'start_time', 'end_time', 'location', 'limit', 'enable_comments'
+            'start_time', 'end_time', 'location', 'limit',
         )
 
 class SearchForm(forms.ModelForm):
