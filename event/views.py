@@ -47,7 +47,7 @@ def event_create(request):
                 messages.SUCCESS,
                 'Event Successfully Created'
             )
-            return HttpResponseRedirect(reverse('event_create'))
+            return HttpResponseRedirect(reverse('event_hosting'))
         return render(
         request,
         "event/create.html",
