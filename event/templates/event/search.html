@@ -4,70 +4,65 @@
 {% block content %}
 {% load crispy_forms_tags %}
 
-<div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col-10 col-md-4 col-xl-3 mt-5 p-4 main-bg h-25">
-            <p class="text-muted">Search Filters</p>
-            <form id="searchForm" method="post" enctype="multipart/form-data">
-                {{ form | crispy }}
-                <div class="col-12 mt-4">
-                    <button type="submit" class="btn btn-warning">Search</button>
-                </div>
-            </form>
-        </div>
+<div class="container">
+    <div class="col-10 offset-1 mt-5">
+        <h5 class="mt-5">Search Events</h5>
+        <hr>
+        <div class="row row-cols-1 row-cols-md-1 g-4">
+            {% for event in event_list %}
+            <div class="col">
+                <a href="{% url 'event_detail' event.id %}">
+                    <div class="card mb-3">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                {% if "event_image" in event.event_image.url %}
+                                <img class="img-fluid rounded-start list-img-search"
+                                    src="{% static 'images/default_event.webp' %}" aria-label="Profile Picture"
+                                    alt="placeholder image">
+                                {% else %}
+                                <img class="img-fluid rounded-start list-img-search" src=" {{ event.event_image.url }}"
+                                    aria-label="Profile Picture" alt="{{ event.event_title }}">
+                                {% endif %}
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{event.event_title}}</h5>
+                                    <p class="card-text">{{ event.description}}</p>
+                                    <p class="card-text"><small class="text-body-secondary">{{event.date}}</small>
+                                    </p>
+                                    <p class="card-text"><small
+                                            class="text-body-secondary">{{ event.start_time }}</small></p>
+                                    <p class="card-text"><small class="text-body-secondary">{{ event.location }}</small>
+                                    </p>
 
-        <div class="col-6 mt-5">
-            <div class="row row-cols-1 row-cols-md-1 g-4">
-                {% for event in event_list %}
-                <div class="col">
-                    <a href="{% url 'event_detail' event.id %}">
-                        <div class="card mb-3">
-                            <div class="row g-0">
-                                <div class="col-md-4">
-                                    {% if "event_image" in event.event_image.url %}
-                                    <img class="img-fluid rounded-start list-img"
-                                        src="{% static 'images/default_event.webp' %}" aria-label="Profile Picture"
-                                        alt="placeholder image">
-                                    {% else %}
-                                    <img class="img-fluid rounded-start list-img" src=" {{ event.event_image.url }}"
-                                        aria-label="Profile Picture" alt="{{ event.event_title }}">
-                                    {% endif %}
-                                </div>
-                                <div class="col-md-8">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{event.event_title}}</h5>
-                                        <p class="card-text">{{ event.description}}</p>
-                                        <p class="card-text"><small class="text-body-secondary">{{event.date}}</small>
-                                        </p>
-                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </a>
-                </div>
-                {% endfor %}
+                    </div>
+                </a>
             </div>
-
-            {% if is_paginated %}
-            <hr>
-            <div class="pagination justify-content-center mt-2">
-                <p><span class="step-links">
-                        {% if page_obj.has_previous %}
-                        <a href="?page={{ page_obj.previous_page_number }}"
-                            aria-label="Previous Page"><b>Previous</b></a>
-                        {% endif %}
-
-                        <span class="current">
-                            Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
-                        </span>
-
-                        {% if page_obj.has_next %}
-                        <a href="?page={{ page_obj.next_page_number }}" aria-label="Next Page"><b>Next</b></a>
-                        {% endif %}
-                    </span></p>
-            </div>
-            {% endif %}
+            {% endfor %}
         </div>
-    </div>
 
-    {% endblock %}
+        {% if is_paginated %}
+        <hr>
+        <div class="pagination justify-content-center mt-2">
+            <p><span class="step-links">
+                    {% if page_obj.has_previous %}
+                    <a href="?page={{ page_obj.previous_page_number }}" aria-label="Previous Page"><b>Previous</b></a>
+                    {% endif %}
+
+                    <span class="current">
+                        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}
+                    </span>
+
+                    {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}" aria-label="Next Page"><b>Next</b></a>
+                    {% endif %}
+                </span></p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

@@ -72,6 +72,10 @@ a {
     height: 190px;
 }
 
+.list-img-search {
+    height: 100%;
+}
+
 .detail-img {
     height: 300px;
 }
