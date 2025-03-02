@@ -67,7 +67,7 @@ class Event(models.Model):
             event = self,
             attendee = user,
             rsvp = 1,
-    )
+        )
 
     def clean(self):
         event_start = datetime.combine(self.date, self.start_time)

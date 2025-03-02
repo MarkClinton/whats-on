@@ -24,10 +24,7 @@ def event_detail(request, event_id):
     attendee_count = attendee_list.count()
     is_user_attending = attendee_list.filter(attendee=request.user).exists()
 
-    if event.limit is not None:
-        capacity = attendee_count >= event.limit
-    else:
-        capacity = False
+    capacity = event.limit is not None and attendee_count >= event.limit
 
     today = date.today()
     in_the_past = event.date < today
@@ -160,4 +157,9 @@ def event_attending(request):
 def attend_event(request, event_id):
     event = Event.objects.get(id=event_id) # pylint: disable=no-member
     event.add_user_to_event(user=request.user)
+    return HttpResponseRedirect(reverse('event_detail', args=[event_id]))
+
+def remove_attend_event(request, event_id):
+    event = EventAttendees.objects.get(event=event_id, attendee=request.user) # pylint: disable=no-member
+    event.delete()
     return HttpResponseRedirect(reverse('event_detail', args=[event_id]))
