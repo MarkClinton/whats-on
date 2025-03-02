@@ -63,7 +63,13 @@
                 </div>
                 {% elif user != event.host %}
                 <div class="card-body">
-                    <a class="btn btn-success" href="{% url 'attend_event' event.id %}">Attend</a>
+                    {% if in_the_past %}
+                    <p class="card-text text-muted"> This event has already happened</p>
+                    {% elif capacity %}
+                    <p class="card-text text-muted"> This event is at capacity</p>
+                    {% else %}
+                    <a class="btn btn-success" href="{% url 'attend_event' event.id %}" aria-disabled="False">Attend</a>
+                    {% endif %}
                 </div>
                 {% endif %}
             </div>

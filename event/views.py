@@ -24,6 +24,14 @@ def event_detail(request, event_id):
     attendee_count = attendee_list.count()
     is_user_attending = attendee_list.filter(attendee=request.user).exists()
 
+    if event.limit is not None:
+        capacity = attendee_count >= event.limit
+    else:
+        capacity = False
+
+    today = date.today()
+    in_the_past = event.date < today
+
     return render(
         request,
         "event/event_detail.html",
@@ -31,6 +39,8 @@ def event_detail(request, event_id):
             "event": event,
             "is_user_attending": is_user_attending,
             "attendee_count": attendee_count,
+            "capacity": capacity,
+            "in_the_past": in_the_past,
         }
     )
 
