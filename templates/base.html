@@ -119,10 +119,10 @@
         </nav>
     </header>
 
-    <!-- Messages -->
-    <aside class="container">
-        <div class="row">
-            <div class="col-md-8 offset-md-2 mt-2">
+    <main class="flex-shrink-0">
+        <!-- Messages -->
+        <aside class="container-fluid alert-messages">
+            <div class="col-6 offset-3" id="messages">
                 {% for message in messages %}
                 <div class="alert alert-{{ message.tags }} alert-dismissible
                     fade show" id="msg" role="alert">
@@ -131,10 +131,8 @@
                 </div>
                 {% endfor %}
             </div>
-        </div>
-    </aside>
+        </aside>
 
-    <main class="flex-shrink-0">
         {% block content %}
         <!-- Content Goes here -->
         {% endblock content %}
@@ -188,6 +186,15 @@
     <script src="https://kit.fontawesome.com/5b3d4c03ab.js" crossorigin="anonymous"></script>
     {% block extras %}
     {% endblock %}
+    <script>
+        // Function to display and hide alert messages.
+        setTimeout(function () {
+            let messagesDj = document.getElementById('messages');
+            if (messagesDj) {
+                messagesDj.style.add = 'none';
+            }
+        }, 2500);
+    </script>
 </body>
 
 </html>

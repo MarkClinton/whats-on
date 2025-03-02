@@ -80,6 +80,13 @@ i {
     font-family: "Roboto", "serif";
 }
 
+.alert-messages {
+    position: fixed;
+    text-align: center;
+    z-index: 3000;
+    margin-top: -15px;
+}
+
 /* Hide field from cloudinary. not needed */
 #div_id_profile_image .input-group:first-of-type,
 #div_id_event_image .input-group:first-of-type {
