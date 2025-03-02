@@ -62,6 +62,11 @@ a {
     border-radius: 5px;
 }
 
+.secondary-bg {
+    background-color: #009688;
+    border-radius: 15px;
+}
+
 .list-img,
 .detail-img {
     width: 100%;
