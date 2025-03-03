@@ -12,7 +12,7 @@ from.forms import EventForm, SearchForm
 
 class EventList(LoginRequiredMixin, generic.ListView, FormMixin):
     today = date.today()
-    queryset = Event.objects.filter(date__gte=today)  # pylint: disable=no-member
+    queryset = Event.objects.filter(date__gte=today)
     ordering = ['date']
     template_name = "event/event_search.html"
     paginate_by = 10
@@ -20,10 +20,10 @@ class EventList(LoginRequiredMixin, generic.ListView, FormMixin):
 
 @login_required
 def event_detail(request, event_id):
-    event_query = Event.objects.all() # pylint: disable=no-member
+    event_query = Event.objects.all()
     event = get_object_or_404(event_query, id=event_id)
 
-    attendee_list = EventAttendees.objects.select_related('attendee').filter(event=event_id) # pylint: disable=no-member
+    attendee_list = EventAttendees.objects.select_related('attendee').filter(event=event_id)
     attendee_count = attendee_list.count()
     is_user_attending = attendee_list.filter(attendee=request.user).exists()
 
@@ -78,7 +78,7 @@ def event_create(request):
 
 @login_required
 def event_edit(request, event_id):
-    event_query = Event.objects.all() # pylint: disable=no-member
+    event_query = Event.objects.all()
     event = get_object_or_404(event_query, id=event_id)
 
     if request.method == "POST":
@@ -112,7 +112,7 @@ def event_edit(request, event_id):
 @login_required
 def event_delete(request, event_id):
 
-    event_query = Event.objects.all() # pylint: disable=no-member
+    event_query = Event.objects.all()
     event = get_object_or_404(event_query, id=event_id)
 
     if event.host == request.user:
@@ -126,8 +126,7 @@ def event_delete(request, event_id):
 @login_required
 def event_hosting(request):
 
-    events = Event.objects.filter(host=request.user) # pylint: disable=no-member
-    # Filter for 2 batches of events: future events and past events
+    events = Event.objects.filter(host=request.user)
     today = date.today()
     future_events = events.filter(date__gte=today)
     past_events = events.filter(date__lt=today)
@@ -153,7 +152,7 @@ def event_hosting(request):
 @login_required
 def event_attending(request):
 
-    attending_events = Event.objects.filter(attending__attendee=request.user) # pylint: disable=no-member
+    attending_events = Event.objects.filter(attending__attendee=request.user)
 
     today = date.today()
     future_events = attending_events.filter(date__gte=today)
@@ -178,11 +177,11 @@ def event_attending(request):
     )
 
 def attend_event(request, event_id):
-    event = Event.objects.get(id=event_id) # pylint: disable=no-member
+    event = Event.objects.get(id=event_id)
     event.add_user_to_event(user=request.user)
     return HttpResponseRedirect(reverse('event_attending'))
 
 def remove_attend_event(request, event_id):
-    event = EventAttendees.objects.get(event=event_id, attendee=request.user) # pylint: disable=no-member
+    event = EventAttendees.objects.get(event=event_id, attendee=request.user)
     event.delete()
     return HttpResponseRedirect(reverse('event_attending'))

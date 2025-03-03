@@ -63,7 +63,7 @@ class Event(models.Model):
         ordering = ["-created_at"]
 
     def add_user_to_event(self, user):
-        EventAttendees.objects.create( # pylint: disable=no-member
+        EventAttendees.objects.create(
             event = self,
             attendee = user,
             rsvp = 1,
