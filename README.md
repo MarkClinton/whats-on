@@ -1,6 +1,7 @@
 # What'sOn.com
 
 Live Site: [What'sOn.com](https://whats-on-2ddb76c9efe6.herokuapp.com/)
+
 Repository: [GitHub Repository](https://github.com/MarkClinton/whats-on)
 
 ![Main image](documentation/screenshots/home.png)
@@ -44,6 +45,12 @@ Repository: [GitHub Repository](https://github.com/MarkClinton/whats-on)
 |-------------|-------------|
 |[#44](https://github.com/MarkClinton/whats-on/issues/44)| As a Host I can add or edit the category for my event so that the correct category to my event |
 
+Project Board during development
+![During](documentation/project_board/Project_Board.png)
+
+Finished Project Board after development
+![After](documentation/project_board/final_Project_board.png)
+
 ## Technologies used
 
 - ### Languages:
@@ -84,14 +91,49 @@ Repository: [GitHub Repository](https://github.com/MarkClinton/whats-on)
     + [PEP8](https://pep8.org/): was used to validate Python code for the website.
 
 ## Features
+Please see [Features]() document for an overview of all features.
 
 ## Design 
+
+The overall design was intended to convey social interactions. Bright colours easy to navigate. The design of the application is based on the Material Design principles. The central theme of the application is the simplicity of use. The decision to implement white spaces was made as it helps to create a more pleasant user experience.
+
+### Colour Scheme
+I wanted a consistent colour scheme through the website. It needed to be clean and not overpowering. I settled on the main colour of #009688 which is a deep green. The secondary colour was chosen to contrast the deep green. I settled on a yellow #ffc107. Both compliment each other and work well not to give the site an overall feeling of fun. 
+
+![green](documentation/screenshots/green.png)
+![yellow](documentation/screenshots/yellow.png)
+
+### Typography
+The main typography used throughoput the site is Roboto. This font is consistent and sleek in design and its readability. Sigmar is used a the brands font. Its playful compared to Roboto and contrasts nicely.
+
+Roboto
+![Roboto](documentation/fonts/roboto.png)
+Sigmar
+![Sigmar](documentation/fonts/sigmar.png)
+
+### Imagery
+The images used throughout the site all came from [Unsplash](https://unsplash.com/s/photos/event)
+
+### Wireframe
+The wireframe was created with [Balsamiq](https://balsamiq.com/). The actual site varies in style compared to the wireframe. The wireframe contains mockups of functionality that I didnt have time to complete. The layout follows the same design. 
+- [WhatsOn Wireframe](documentation/wireframe/WhatsOn_Wireframe.pdf)
 
 ## Information Architecture
 
 ## Testing
 
 ## Deployment
+
+## Future Development
+
+## GitHub Authentication
+It should be known that during a mentor session it was pointed out that the user I was commiting code to the repo was not linked to my github account. 
+
+This was only pointed out on this project. But it was the case for all of my previous projects. As it turned out I changed the email of my Github account before starting this course but never updated the user email on my machine to relect this. 
+
+I updated the email during the development of this project and have noted the first commit with the updated email.
+
+![Github Authentication](documentation/bugs/updated_github_email.png)
 
 ## Credits
 
