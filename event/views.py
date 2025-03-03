@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
 from .models import Event, EventAttendees
 from.forms import EventForm, SearchForm
 
@@ -17,6 +18,7 @@ class EventList(LoginRequiredMixin, generic.ListView, FormMixin):
     paginate_by = 10
     form_class = SearchForm
 
+@login_required
 def event_detail(request, event_id):
     event_query = Event.objects.all() # pylint: disable=no-member
     event = get_object_or_404(event_query, id=event_id)
@@ -42,6 +44,7 @@ def event_detail(request, event_id):
         }
     )
 
+@login_required
 def event_create(request):
 
     if request.method == "POST":
@@ -73,6 +76,7 @@ def event_create(request):
         },
     )
 
+@login_required
 def event_edit(request, event_id):
     event_query = Event.objects.all() # pylint: disable=no-member
     event = get_object_or_404(event_query, id=event_id)
@@ -105,6 +109,7 @@ def event_edit(request, event_id):
         },
     )
 
+@login_required
 def event_delete(request, event_id):
 
     event_query = Event.objects.all() # pylint: disable=no-member
@@ -118,7 +123,7 @@ def event_delete(request, event_id):
 
     return HttpResponseRedirect(reverse('event_hosting'))
 
-
+@login_required
 def event_hosting(request):
 
     events = Event.objects.filter(host=request.user) # pylint: disable=no-member
@@ -145,6 +150,7 @@ def event_hosting(request):
         },
     )
 
+@login_required
 def event_attending(request):
 
     attending_events = Event.objects.filter(attending__attendee=request.user) # pylint: disable=no-member
