@@ -12,7 +12,7 @@ class EventList(generic.ListView, FormMixin):
     today = date.today()
     queryset = Event.objects.filter(date__gte=today)  # pylint: disable=no-member
     ordering = ['date']
-    template_name = "event/search.html"
+    template_name = "event/event_search.html"
     paginate_by = 10
     form_class = SearchForm
 
@@ -57,7 +57,7 @@ def event_create(request):
             return HttpResponseRedirect(reverse('event_hosting'))
         return render(
         request,
-        "event/create.html",
+        "event/create_event.html",
         {
             "event_form": event_form,
         },
@@ -66,7 +66,7 @@ def event_create(request):
     event_form = EventForm()
     return render(
         request,
-        "event/create.html",
+        "event/create_event.html",
         {
             "event_form": event_form,
         },
@@ -126,7 +126,7 @@ def event_hosting(request):
     future_events = events.filter(date__gte=today)
     past_events = events.filter(date__lt=today)
 
-    is_events_none = events.count() == 0
+    is_events_none = future_events.count() == 0
     is_past_events_none = past_events.count() == 0
 
     paginator = Paginator(future_events, 9)
@@ -135,7 +135,7 @@ def event_hosting(request):
 
     return render(
         request,
-        "event/hosting.html",
+        "event/event_hosting.html",
         {
             "page_obj": page_obj,
             "past_events": past_events,
@@ -161,7 +161,7 @@ def event_attending(request):
 
     return render(
         request,
-        "event/attending.html",
+        "event/event_attending.html",
         {
             "page_obj": page_obj,
             "past_events": past_events,
