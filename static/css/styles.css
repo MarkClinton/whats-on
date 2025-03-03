@@ -64,7 +64,6 @@ a {
 
 .secondary-bg {
     background-color: #009688;
-    border-radius: 15px;
 }
 
 .list-img,
@@ -83,6 +82,13 @@ a {
 
 .detail-img {
     height: 300px;
+}
+
+.main-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 15px;
 }
 
 i {

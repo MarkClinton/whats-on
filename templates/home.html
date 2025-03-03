@@ -1,11 +1,83 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 
-<div class="container text-center secondary-bg">
-    <div class="row justify-content-center">
-        <div class="col-12">
-            <h1 class="brand">What'sOn.com</h1>
+<div class="container-fluid secondary-bg h-100">
+    <div class="container">
+        <div class="row justify-content-center text-center p-5 g-0">
+            <div class="col-8">
+                <h3 class="brand">What'sOn.com</h3>
+                <h4 class="mt-4">Discover & Experience the Best Events!</h4>
+                <p>Looking for something exciting to do? What's On is your go-to platform for finding the best events
+                    happening across Ireland. Whether you're into music, sports, film, food, or tech, we've got
+                    something
+                    for you!
+                </p>
+            </div>
+        </div>
+        <div class="row justify-content-start p-5">
+            <div class="col-8">
+                <h4 class="brand mb-4">Events For Everyone</h4>
+                <h6 class="pb-2">Find Events That Match Your Interests
+                    Browse events across a wide range of categories.</h6>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item secondary-bg border-0">Music & Concerts</li>
+                    <li class="list-group-item secondary-bg border-0">Sports & Fitness</li>
+                    <li class="list-group-item secondary-bg border-0">Film & Media</li>
+                    <li class="list-group-item secondary-bg border-0">Food & Drink</li>
+                    <li class="list-group-item secondary-bg border-0">Travel & Adventures</li>
+                    <li class="list-group-item secondary-bg border-0">Science & Tech</li>
+                </ul>
+            </div>
+            <div class="col-4 g-0">
+                <img class="img-fluid main-img right-radius" src="{% static 'images/event_1.webp' %}"
+                    aria-label="event picture" alt="A photo of a concertgoer taking a picture">
+            </div>
+        </div>
+        <div class="row justify-content-end p-5">
+            <div class="col-4 g-0">
+                <img class="img-fluid main-img left-radius" src="{% static 'images/event_2.webp' %}"
+                    aria-label="event picture" alt="A photo of a concertgoer taking a picture">
+            </div>
+            <div class="col-8">
+                <h4 class="brand mb-4">No Matter Where You Are</h4>
+                <h6 class="pb-2">Explore Events by Location
+                    From the bustling streets of Dublin to the scenic coasts of Galway, we bring you events happening in
+                    every
+                    county in Ireland. Find something local or plan a trip to experience something new!
+                </h6>
+                <h6 class="pb-2">Top Locations:</h6>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item secondary-bg border-0">Dublin</li>
+                    <li class="list-group-item secondary-bg border-0">Cork</li>
+                    <li class="list-group-item secondary-bg border-0">Galway</li>
+                    <li class="list-group-item secondary-bg border-0">Limerick</li>
+                    <li class="list-group-item secondary-bg border-0">Kerry</li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="row justify-content-start p-5">
+            <div class="col-8">
+                <h4 class="brand mb-8">Why Use What'sOn.com?</h4>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item secondary-bg border-0">Discover Local & National Events – Easily find
+                        events near you or plan
+                        ahead.</li>
+                    <li class="list-group-item secondary-bg border-0">Personalized Recommendations – Get event
+                        suggestions based on your
+                        interests.</li>
+                    <li class="list-group-item secondary-bg border-0">Easy Ticket Booking – Secure your spot in just a
+                        few clicks.</li>
+                    <li class="list-group-item secondary-bg border-0">Host Your Own Events – Promote your event to a
+                        wide audience.</li>
+                </ul>
+            </div>
+            <div class="col-4 g-0">
+                <img class="img-fluid main-img right-radius" src="{% static 'images/event_3.webp' %}"
+                    aria-label="event picture" alt="A photo of a concertgoer taking a picture">
+            </div>
         </div>
     </div>
 </div>
