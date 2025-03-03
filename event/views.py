@@ -5,10 +5,11 @@ from django.views.generic.edit import FormMixin
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 from .models import Event, EventAttendees
 from.forms import EventForm, SearchForm
 
-class EventList(generic.ListView, FormMixin):
+class EventList(LoginRequiredMixin, generic.ListView, FormMixin):
     today = date.today()
     queryset = Event.objects.filter(date__gte=today)  # pylint: disable=no-member
     ordering = ['date']
