@@ -1,9 +1,11 @@
 from django.shortcuts import render, reverse
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from .models import NewUser
 from .forms import ProfileForm
 
+@login_required
 def get_profile(request):
 
     user_profile = NewUser.objects.get(email=request.user.email)
