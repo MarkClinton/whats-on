@@ -125,6 +125,48 @@ The wireframe was created with [Balsamiq](https://balsamiq.com/). The actual sit
 ## Deployment
 
 ## Future Development
+During the planning stage I had more functionality that I planned to implement but ultimately did not have the time to execute. This functionality is contained in the [Future Improvements](https://github.com/users/MarkClinton/projects/4/views/1) column on the Project Board.
+
+Here are the future improvements I want to make.
+#### **Comments**
+[Comments Epic](https://github.com/MarkClinton/whats-on/issues/42)
+Add the functionality for attendees and hosts of an event to send interact with a comment section and have control over their own comments. 
+
+| Issue ID    | User Story |
+|-------------|-------------|
+|[#37](https://github.com/MarkClinton/whats-on/issues/37)| As a Attendee of an event I can see all comments left by other attendees and the host so that see whats happening |
+|[#36](https://github.com/MarkClinton/whats-on/issues/36)| As a attendee of an event I can delete any comment I have left so that I can remove my comment |
+|[#35](https://github.com/MarkClinton/whats-on/issues/35)| As a attendee of an event I can leave a comment so that I can interact with other attendees and the host |
+|[#34](https://github.com/MarkClinton/whats-on/issues/34)| As a user I can edit the comments I have created on events so that I can correct any mistakes.|
+|[#33](https://github.com/MarkClinton/whats-on/issues/33)| As a host of an event I can view all comments so that I can see the comments left on an event.|
+|[#31](https://github.com/MarkClinton/whats-on/issues/31)| As a Host of an event I can delete any comment so that I can remove the ones I find inappropriate.|
+|[#30](https://github.com/MarkClinton/whats-on/issues/30)| As a host of an event I can create a comment so that all attendees can see it.|
+
+#### **Notifications**
+[Notification Epic](https://github.com/MarkClinton/whats-on/issues/40)
+Add the functionality for Notifications. Notifications will be sent to attendees when a host makes changes or comments on an event theyre attending.
+
+| Issue ID    | User Story |
+|-------------|-------------|
+|[#38](https://github.com/MarkClinton/whats-on/issues/38)| As a attendee of events I can receive notifications about events I am attending so that I can keep up to date |
+|[#15](https://github.com/MarkClinton/whats-on/issues/15)| As a host of an event I can receive notifications about events I am hosting so that I can stay informed on my events |
+
+#### **Events**
+[Events Epic](https://github.com/MarkClinton/whats-on/issues/41)
+Add the functionality so that a host can remove an attendee and block them from the event. A host can also enable and disable comments on their event by editing the event. 
+
+| Issue ID    | User Story |
+|-------------|-------------|
+|[#25](https://github.com/MarkClinton/whats-on/issues/25)| As a host of an event I can remove an attendee so that they no longer can go to the event |
+|[#32](https://github.com/MarkClinton/whats-on/issues/32)| As a host of an event I can disable and enable comments on my event so that attendees can or cannot comment |
+|[#47](https://github.com/MarkClinton/whats-on/issues/47)| As a user I can search for events using filters on search.html so that I can better find events I want to attend |
+
+#### **File Comments**
+Docstrings should be added to files, classes and methods where appropiate. 
+
+| Issue ID    | User Story |
+|-------------|-------------|
+|[#46](https://github.com/MarkClinton/whats-on/issues/46)| Add function and methods docstrings to better explain the logic. |
 
 ## GitHub Authentication
 It should be known that during a mentor session it was pointed out that the user I was commiting code to the repo was not linked to my github account. 
