@@ -91,6 +91,10 @@ a {
     border-radius: 15px;
 }
 
+.main-radius {
+    border-radius: 25px;
+}
+
 i {
     font-family: "Roboto", "serif";
 }
