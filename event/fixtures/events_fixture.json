@@ -1,0 +1,262 @@
+[
+    {
+        "model": "event.event",
+        "pk": null,
+        "fields": {
+            "title": "Wild Atlantic Run",
+            "description": "A scenic coastal run along Irelands Wild Atlantic Way.",
+            "category": 6,
+            "date": "2025-05-10",
+            "start_time": "08:00:00",
+            "end_time": "12:00:00",
+            "location": "Galway"
+        }
+    },
+    {
+        "model": "event.event",
+        "pk": null,
+        "fields": {
+            "title": "Cork Film Festival",
+            "description": "A showcase of independent Irish and international films.",
+            "category": 5,
+            "date": "2025-06-15",
+            "start_time": "18:00:00",
+            "end_time": "22:30:00",
+            "location": "Cork"
+        }
+    },
+    {
+        "model": "event.event",
+        "pk": null,
+        "fields": {
+            "title": "Taste of Dublin",
+            "description": "A gourmet food festival featuring Irelands top chefs.",
+            "category": 4,
+            "date": "2025-07-02",
+            "start_time": "12:00:00",
+            "end_time": "20:00:00",
+            "location": "Dublin"
+        }
+    },
+    {
+        "model": "event.event",
+        "pk": null,
+        "fields": {
+            "title": "Wicklow Adventure Trek",
+            "description": "A guided hike through the Wicklow Mountains.",
+            "category": 3,
+            "date": "2025-08-21",
+            "start_time": "09:00:00",
+            "end_time": "17:00:00",
+            "location": "Wicklow"
+        }
+    },
+    {
+        "model": "event.event",
+        "pk": null,
+        "fields": {
+            "title": "Limerick Jazz Night",
+            "description": "An evening of live jazz performances in a cozy venue.",
+            "category": 2,
+            "date": "2025-09-05",
+            "start_time": "19:30:00",
+            "end_time": "23:00:00",
+            "location": "Limerick"
+        }
+    },
+    {
+        "model": "event.event",
+        "pk": null,
+        "fields": {
+            "title": "AI & Future Tech Summit",
+            "description": "A conference on AI innovations and future technologies.",
+            "category": 1,
+            "date": "2025-10-12",
+            "start_time": "10:00:00",
+            "end_time": "16:00:00",
+            "location": "Dublin"
+        }
+    },
+    {
+        "model": "event.event",
+        "pk": null,
+        "fields": {
+            "title": "Kerry Surf Challenge",
+            "description": "A surfing competition on Kerrys famous beaches.",
+            "category": 6,
+            "date": "2025-05-20",
+            "start_time": "09:00:00",
+            "end_time": "15:00:00",
+            "location": "Kerry"
+        }
+    },
+    {
+        "model": "event.event",
+        "pk": null,
+        "fields": {
+            "title": "Indie Film Showcase",
+            "description": "A night of screening award-winning short films.",
+            "category": 5,
+            "date": "2025-06-28",
+            "start_time": "20:00:00",
+            "end_time": "23:30:00",
+            "location": "Galway"
+        }
+    },
+    {
+        "model": "event.event",
+        "pk": null,
+        "fields": {
+            "title": "Irish Whiskey Tasting",
+            "description": "A guided tasting of Irelands best whiskeys.",
+            "category": 4,
+            "date": "2025-07-18",
+            "start_time": "18:00:00",
+            "end_time": "22:00:00",
+            "location": "Waterford"
+        }
+    },
+    {
+        "model": "event.event",
+        "pk": null,
+        "fields": {
+            "title": "Cliffs of Moher Day Trip",
+            "description": "A scenic bus tour along the west coast.",
+            "category": 3,
+            "date": "2025-08-10",
+            "start_time": "07:00:00",
+            "end_time": "19:00:00",
+            "location": "Clare"
+        }
+    },
+    {
+        "model": "event.event",
+        "pk": null,
+        "fields": {
+            "title": "Dublin Rock Fest",
+            "description": "A day-long music festival with top rock bands.",
+            "category": 2,
+            "date": "2025-09-12",
+            "start_time": "14:00:00",
+            "end_time": "23:59:00",
+            "location": "Dublin"
+        }
+    },
+    {
+        "model": "event.event",
+        "pk": null,
+        "fields": {
+            "title": "Robotics & AI Expo",
+            "description": "A hands-on tech expo featuring robotics demos.",
+            "category": 1,
+            "date": "2025-11-05",
+            "start_time": "09:00:00",
+            "end_time": "18:00:00",
+            "location": "Cork"
+        }
+    },
+    {
+        "model": "event.event",
+        "pk": null,
+        "fields": {
+            "title": "Donegal Mountain Marathon",
+            "description": "A challenging marathon through rugged terrain.",
+            "category": 6,
+            "date": "2025-06-08",
+            "start_time": "07:00:00",
+            "end_time": "13:00:00",
+            "location": "Donegal"
+        }
+    },
+    {
+        "model": "event.event",
+        "pk": null,
+        "fields": {
+            "title": "Classic Cinema Night",
+            "description": "Screening of classic films in an old-style theater.",
+            "category": 5,
+            "date": "2025-07-14",
+            "start_time": "19:00:00",
+            "end_time": "22:00:00",
+            "location": "Wexford"
+        }
+    },
+    {
+        "model": "event.event",
+        "pk": null,
+        "fields": {
+            "title": "Galway Seafood Festival",
+            "description": "Celebrating fresh Irish seafood with top chefs.",
+            "category": 4,
+            "date": "2025-08-05",
+            "start_time": "11:00:00",
+            "end_time": "21:00:00",
+            "location": "Galway"
+        }
+    },
+    {
+        "model": "event.event",
+        "pk": null,
+        "fields": {
+            "title": "Tipperary Castle Tour",
+            "description": "A historical tour of Tipperarys famous castles.",
+            "category": 3,
+            "date": "2025-09-22",
+            "start_time": "10:00:00",
+            "end_time": "16:00:00",
+            "location": "Tipperary"
+        }
+    },
+    {
+        "model": "event.event",
+        "pk": null,
+        "fields": {
+            "title": "Summer Sounds Festival",
+            "description": "An outdoor music festival with local and international artists.",
+            "category": 2,
+            "date": "2025-07-30",
+            "start_time": "13:00:00",
+            "end_time": "23:30:00",
+            "location": "Meath"
+        }
+    },
+    {
+        "model": "event.event",
+        "pk": null,
+        "fields": {
+            "title": "Future of Space Tech Conference",
+            "description": "A look at Irelands role in space exploration.",
+            "category": 1,
+            "date": "2025-10-28",
+            "start_time": "10:00:00",
+            "end_time": "17:00:00",
+            "location": "Louth"
+        }
+    },
+    {
+        "model": "event.event",
+        "pk": null,
+        "fields": {
+            "title": "Mayo Coastal Cycle",
+            "description": "A cycling event along Mayos breathtaking coast.",
+            "category": 6,
+            "date": "2025-06-17",
+            "start_time": "08:30:00",
+            "end_time": "14:00:00",
+            "location": "Mayo"
+        }
+    },
+    {
+        "model": "event.event",
+        "pk": null,
+        "fields": {
+            "title": "Animated Ireland Expo",
+            "description": "A celebration of Irelands animation industry.",
+            "category": 5,
+            "date": "2025-09-10",
+            "start_time": "09:30:00",
+            "end_time": "17:00:00",
+            "location": "Kilkenny"
+        }
+    }
+]
