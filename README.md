@@ -77,6 +77,7 @@ Finished Project Board after development
     + [Spycopg2](https://www.python.org/dev/peps/pep-0249/): the database driver used to connect to the database.
     + [Django-allauth](https://django-allauth.readthedocs.io/en/latest/): the authentication library used to create the user accounts.
     + [Django-crispy-forms](https://django-cryptography.readthedocs.io/en/latest/): was used to control the rendering behavior of Django forms.
+    + [Django Phone Number Field](https://django-phonenumber-field.readthedocs.io/en/latest/): was used for the phone number field on teh User model.
     + [Heroku](https://www.heroku.com/): the cloud platform used to host the website.
     + [PostgreSQL from Code Institute](https://dbs.ci-dbs.net/): PostgreSQL database used to store all the dat provided by Code Institute.
     + [GitHub](https://github.com/): used to host the website's source code.
@@ -91,7 +92,7 @@ Finished Project Board after development
     + [PEP8](https://pep8.org/): was used to validate Python code for the website.
 
 ## Features
-Please see [FEATURES.md](FEATURES.md) document for an overview of all features.
+Please see [FEATURES.md](FEATURES.MD) document for an overview of all features.
 
 ## Design 
 
@@ -169,6 +170,17 @@ Docstrings should be added to files, classes and methods where appropiate.
 |[#46](https://github.com/MarkClinton/whats-on/issues/46)| Add function and methods docstrings to better explain the logic. |
 
 ## Bugs
+### date in the past
+When creating an event the user was allowed to create an event with a date in the past. To stop this, I added a clean method to the Event model. In this clean method I created some validation around the date. If the date is less than the current day then the method will pass back a validation error to the form with an information message to the user. 
+![date past bug](documentation/bugs/date_in_past_bug.png)
+
+### end time less than start time
+Another issue with the form was that the end time of an event could be before the start time. To ensure this cant happen I added another check to the clean method in the Event model. Since the event can only ever be on one day I created a datetime object using the current date and the start time. If that datetime is less than now raise a validation error to be sent back to the form.  
+![end time less than start time](documentation/bugs/endtime_less_than_starttime_bug.png)
+
+### phone number save
+The phone number field on the User model is utilising the Django Phone Number Field package. For this field I added the region="IE" to the form. The Phone Number field will only accept valid Irish phone numbers. We then check for invalid input when the form is sent and display the following message if the number is not correct - 'Incorrect format. Use an Irish number. e.g. (087) 456 7890.'. To keep it simple the validation only happens for Irish phone numbers as thats all the field accepts. If we wanted to we could utilise the package and add more prefixes for more country phone numbers. 
+![phone number bug](documentation/bugs/phone_number_save_bug.png)
 
 ## GitHub Authentication
 It should be known that during a mentor session it was pointed out that the user I was commiting code to the repo was not linked to my github account. 
