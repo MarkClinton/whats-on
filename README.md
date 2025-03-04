@@ -121,6 +121,87 @@ The wireframe was created with [Balsamiq](https://balsamiq.com/). The actual sit
 
 ## Information Architecture
 
+### Database
+- From the beginning the database was created using PostgresSQL. To ensure no issue.
+
+### Entity- Relationship Diagram
+- The ERD was created using [Miro](https://miro.com/app/dashboard/)
+- [Database Schema](/documentation/erd/ERD_Diagram.png)
+
+### Data Modeling
+
+**NewUser**
+This is a custom user model which extends Django's AbstractBaseUser.
+
+| Name          | Database Key  | Field Type    | Validation |
+| ------------- | ------------- | ------------- | ---------- |
+| Email          | email          | EmailField         |  unique=True    |
+| First Name     | first_name     | CharField          | max_length=150  |
+| Last Name      | last_name      | CharField          | max_length=150  |
+| Profile Image  | profile_image  | CloudinaryField    | default='profile_image     |
+| About          | about          | TextField          | max_length=500, blank=True |
+| Location       | location       | CharField          | max_length=100, blank=True |
+| Created At     | created_at     | DateTimeField      | auto_now=True  |
+| Phone Number   | phone_number   | PhoneNumberField   | blank=True     |
+| Is Active      | is_active      | BooleanField       | default=True   |
+| Is Staff       | is_staff       | BooleanField       | default=False  |
+
+**Category**
+Category is a seperate model which holds values for each category. The reason is to have an easily updateable table for categories that can serve the Event.
+
+| Name          | Database Key  | Field Type    | Validation |
+| ------------- | ------------- | ------------- | ---------- |
+| Name          | name          | CharField         | max_length=50    |
+| Created At    | created_at    | DateTimeField     | auto_now_add=True   |
+
+**Event**
+The main event model which holds the data for events and the relationships.
+There is 2 relationships in this data model. 
+- Category - One Category can have many events. 
+- User - One host can have many events. 
+Both work off a ManyToOne relationship.
+
+| Name          | Database Key  | Field Type    | Validation |
+| ------------- | ------------- | ------------- | ---------- |
+| Event Title       | event_title       | CharField          | max_length=200 |
+| Description       | description       | TextField          | -- |
+| Category          | category          | ManyToOne          | Category, related_name="events  |
+| Host              | host              | ManyToOne          | User, related_name="event  |
+| Event Image       | event_image       | CloudinaryField    | default='event_image  |
+| Date              | date              | DateField          | -- |
+| Start Time        | start_time        | TimeField          | -- |
+| End Time          | end_time          | TimeField          | -- |
+| Location          | location          | CharField          | max_length=50   |
+| Enable Comments   | enable_comments   | BooleanField       | default=True    |
+| Limit             | limit             | IntegerField       | blank=True, null=True  |
+| is_deleted        | is_deleted        | BooleanField       | default=False  |
+| Created At        | created_at        | DateTimeField      | auto_now_add=True  |
+| Last Updated      | last_updated      | DateTimeField      | auto_now=True  |
+
+**EventAttendees**
+This table is used to store the information about each users attended events.
+There is 2 relationships in this data model: 
+- Event - Each Attendee belongs to one event.
+- User - Each attendee belongs to one user
+Both work off a ManyToOne relationship.
+
+| Name          | Database Key  | Field Type    | Validation |
+| ------------- | ------------- | ------------- | ---------- |
+| Event          | event        | ManyToOne           | Event, related_name="attending" |
+| Attendee       | attendee     | ManyToOne           | User, related_name="attendee" |
+| RSVP           | rsvp         | IntegerField        | choices=RESPONSE, default=0  |
+| Is Blocked     | is_blocked   | BooleanField        | default=False  |
+| Created At     | created_at   | DateTimeField       | auto_now_add=True  |
+
+```Python
+    # RSVP Choices
+    RESPONSE = (
+        (0, "Not Going"), 
+        (1, "Going"), 
+        (2, "Maybe")
+    )
+```
+
 ## Testing
 
 ## Deployment
@@ -185,10 +266,12 @@ The phone number field on the User model is utilising the Django Phone Number Fi
 ### currently field from cloudinary
 While using the cloudinary package to handle the upload of images there was some unexpected behaviour with using this field when a form is populated with an instance. On both the User Profile and Edit Event pages there was an extra field being served by cloudinarty called "Currently" this field is to display the image that is currently in place for an instance. The issue was that this field did not display the link, it had a href attached to it but no content for a user to click. This field was not needed in my flow and there was not documentation on the [Cloudinary](https://cloudinary.com/documentation/) site on how to handle this. What I implemented instead was some simple CSS to remove this field from both the Edit Event and User Profile form.
 
-        #div_id_profile_image .input-group:first-of-type,
-        #div_id_event_image .input-group:first-of-type {
-            display: none !important;
-        }
+```CSS
+#div_id_profile_image .input-group:first-of-type,
+#div_id_event_image .input-group:first-of-type {
+    display: none !important;
+}
+```
 
 ![currently field bug](documentation/bugs/currently_field.png)
 
