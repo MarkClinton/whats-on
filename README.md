@@ -182,6 +182,16 @@ Another issue with the form was that the end time of an event could be before th
 The phone number field on the User model is utilising the Django Phone Number Field package. For this field I added the region="IE" to the form. The Phone Number field will only accept valid Irish phone numbers. We then check for invalid input when the form is sent and display the following message if the number is not correct - 'Incorrect format. Use an Irish number. e.g. (087) 456 7890.'. To keep it simple the validation only happens for Irish phone numbers as thats all the field accepts. If we wanted to we could utilise the package and add more prefixes for more country phone numbers. 
 ![phone number bug](documentation/bugs/phone_number_save_bug.png)
 
+### currently field from cloudinary
+While using the cloudinary package to handle the upload of images there was some unexpected behaviour with using this field when a form is populated with an instance. On both the User Profile and Edit Event pages there was an extra field being served by cloudinarty called "Currently" this field is to display the image that is currently in place for an instance. The issue was that this field did not display the link, it had a href attached to it but no content for a user to click. This field was not needed in my flow and there was not documentation on the [Cloudinary](https://cloudinary.com/documentation/) site on how to handle this. What I implemented instead was some simple CSS to remove this field from both the Edit Event and User Profile form.
+
+        #div_id_profile_image .input-group:first-of-type,
+        #div_id_event_image .input-group:first-of-type {
+            display: none !important;
+        }
+
+![currently field bug](documentation/bugs/currently_field.png)
+
 ## GitHub Authentication
 It should be known that during a mentor session it was pointed out that the user I was commiting code to the repo was not linked to my github account. 
 
