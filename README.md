@@ -91,7 +91,7 @@ Finished Project Board after development
     + [PEP8](https://pep8.org/): was used to validate Python code for the website.
 
 ## Features
-Please see [Features]() document for an overview of all features.
+Please see [FEATURES.md](FEATURES.md) document for an overview of all features.
 
 ## Design 
 
