@@ -130,7 +130,7 @@ The wireframe was created with [Balsamiq](https://balsamiq.com/). The actual sit
 
 ### Data Modeling
 
-**NewUser**
+#### NewUser
 This is a custom user model which extends Django's AbstractBaseUser.
 
 | Name          | Database Key  | Field Type    | Validation |
@@ -146,7 +146,7 @@ This is a custom user model which extends Django's AbstractBaseUser.
 | Is Active      | is_active      | BooleanField       | default=True   |
 | Is Staff       | is_staff       | BooleanField       | default=False  |
 
-**Category**
+#### Category
 Category is a seperate model which holds values for each category. The reason is to have an easily updateable table for categories that can serve the Event.
 
 | Name          | Database Key  | Field Type    | Validation |
@@ -154,7 +154,7 @@ Category is a seperate model which holds values for each category. The reason is
 | Name          | name          | CharField         | max_length=50    |
 | Created At    | created_at    | DateTimeField     | auto_now_add=True   |
 
-**Event**
+#### Event
 The main event model which holds the data for events and the relationships.
 There is 2 relationships in this data model. 
 - Category - One Category can have many events. 
@@ -174,11 +174,11 @@ Both work off a ManyToOne relationship.
 | Location          | location          | CharField          | max_length=50   |
 | Enable Comments   | enable_comments   | BooleanField       | default=True    |
 | Limit             | limit             | IntegerField       | blank=True, null=True  |
-| is_deleted        | is_deleted        | BooleanField       | default=False  |
+| Is Deleted        | is_deleted        | BooleanField       | default=False  |
 | Created At        | created_at        | DateTimeField      | auto_now_add=True  |
 | Last Updated      | last_updated      | DateTimeField      | auto_now=True  |
 
-**EventAttendees**
+#### EventAttendees
 This table is used to store the information about each users attended events.
 There is 2 relationships in this data model: 
 - Event - Each Attendee belongs to one event.
@@ -202,9 +202,109 @@ Both work off a ManyToOne relationship.
     )
 ```
 
+### Future Functionality
+You may notice that some of these models have fields that are not used throughout the application. Such as is_deleted and enable_comments in the Event data model. Or, is_blocked and rsvp in the EventAttendees data model. These data models were designed at the start of development but due to time constraints could not be implemented properly, thus they never made it to the final release. 
+
+In the ERD Diagram you will notice 2 extra models, Notifications and Comments. These were planned data models for the application but could not be implemented in time. More details about how these data models should work can be found on the project board.
+
+- [Notifications Epic](https://github.com/MarkClinton/whats-on/issues/40)
+- [Comments Epic](https://github.com/MarkClinton/whats-on/issues/42)
+
 ## Testing
 
 ## Deployment
+To deploy this project either locally or to Heroku, please follow the below steps:
+
+#### Fork the repository
+
+By forking the GitHub Repository you can make a copy of the original repository to view or change without it effecting the original repository. The forked repository will be easier to find when we deploy to Heroku.
+
++ Log in to [GitHub](https://github.com/) or create an account
++ Navigate to this [respository](https://github.com/MarkClinton/whats-on) 
++ Select "Fork" at the top of the screen
++ A copy of the repository should now be created in your own repository
+
+### Heroku Deployment
+
+#### Heroku setup
++ Sign up or Login to [Heroku](https://www.heroku.com/)
++ On the Heroku Dashboard click 'New' on the top right and select 'Create new app'
++ Give the app a unique name and select the location most appropiate to you
++ Click 'Create app'
++ Navigate to the 'Deploy' tab and select GitHub as the 'Deployment method'
++ Search and connect to the respository you just forked from the [Fork the repository](#fork-the-repository) steps above.
++ Next, navigate to the 'Settings' tab and scroll down to the 'Config Vars' section
++ Click 'Reveal Config Vars'
++ Here we need to add the 3 environment variables to Heroku
+
+| Key    | Value |
+|-------------|-------------|
+| CLOUDINARY_URL | Your Cloudinary API environment variable |
+| DATABASE_URL   | Your PostgreSQL Database URL |
+| SECRET_KEY     | Your Secret Key Value |
+
+#### Heroku deployment
++ Navigate back to the 'Deploy' tab.
++ Ensure that the correct GitHub repository is still connected.
++ Click 'Deploy Branch' in the 'Manual deploy' section.
++ It takes a minute or two to create.
++ You should then see a message 'Your app was successfully deployed.' 
++ Click 'View' to open the app.
++ The app should be running but not usable as the database is not setup.
+
+#### Prepare PostgreSQL database on Heroku
++ Click the 'More' button on the top right of the Heroku dashboard
++ Select 'Run console'
++ Type in ```bash``` and click 'Run'
++ run ```python3 manage.py makemigrations```
++ The migrations should already be made and you should get the message 'No changes detected'.
++ Once complete, run the following to migrate the data models ```python3 manage.py migrate```
++ If successful then the database should be ready to go. 
+
+#### Load the fixtures file (Optional)
++ The project contains a [fixtures file](/event/fixtures/events_fixture.json) with some pre-populated events data. 
++ to load this into your database. Run the following ```python3 manage.py loaddata events_fixture.json```
+
+### Local Deployment
+
+#### Create virtual environment (Optional)
++ cd to the root of the cloned project
++ Create a virtual env folder inside the root directory
++ Use the ```command python3 -m venv env``` to create an env folder
++ Add the env folder to your .gitignore
++ Run the command ```source env/bin/activate``` to activate the virtual environment
+
+#### Create env.py 
++ Create a new file at the root of your newly forked repository 
++ name this file env.py
++ In env.py import os at the top of the file - ``` import os ```
++ Add the following environment variables to env.py
+```Python
+os.environ.setdefault("DATABASE_URL", "Your PostgreSQL Database URL")
+os.environ.setdefault("SECRET_KEY", "Your Secret Key Value")
+os.environ.setdefault("CLOUDINARY_URL", "Your Cloudinary API environment variable")
+```
++ Make sure to supply your own values for these environment variables.
++ Add the env.py file to your .gitignore
+
+#### Install packages
++ Run the command ```pip3 install -r requirements.txt``` to install the requirements
+
+#### Prepare the PostgreSQL database
++ cd to the root of the projects directory in the terminal 
++ run ```python3 manage.py makemigrations```
++ The migrations should already be made and you should get the message 'No changes detected'.
++ Once complete, run the following to migrate the data models ```python3 manage.py migrate```
++ If successful then the database should be ready to go. 
+
+#### Run the development server
++ in the terminal run the command ```python3 manage.py runserver```
++ A development server should be then available to view the app.
+
+#### Load the fixtures file (Optional)
++ The project contains a [fixtures file](/event/fixtures/events_fixture.json) with some pre-populated events data. 
++ to load this into your database. Run the following ```python3 manage.py loaddata events_fixture.json```
+
 
 ## Future Development
 During the planning stage I had more functionality that I planned to implement but ultimately did not have the time to execute. This functionality is contained in the [Future Improvements](https://github.com/users/MarkClinton/projects/4/views/1) column on the Project Board.
