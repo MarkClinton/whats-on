@@ -262,6 +262,7 @@ By forking the GitHub Repository you can make a copy of the original repository 
 + If successful then the database should be ready to go. 
 
 #### Load the fixtures file (Optional)
++ Before loading the fixture file you must first register a user on the app. If you dont the fixture file will not work.
 + The project contains a [fixtures file](/event/fixtures/events_fixture.json) with some pre-populated events data. 
 + to load this into your database. Run the following ```python3 manage.py loaddata events_fixture.json```
 
@@ -301,7 +302,8 @@ os.environ.setdefault("CLOUDINARY_URL", "Your Cloudinary API environment variabl
 + in the terminal run the command ```python3 manage.py runserver```
 + A development server should be then available to view the app.
 
-#### Load the fixtures file (Optional)
+#### Load the fixture file (Optional)
++ Before loading the fixture file you must first register a user on the app. If you dont the fixture file will not work.
 + The project contains a [fixtures file](/event/fixtures/events_fixture.json) with some pre-populated events data. 
 + to load this into your database. Run the following ```python3 manage.py loaddata events_fixture.json```
 
