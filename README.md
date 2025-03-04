@@ -9,9 +9,8 @@ Repository: [GitHub Repository](https://github.com/MarkClinton/whats-on)
 ## About
 [What'sOn.com](https://whats-on-2ddb76c9efe6.herokuapp.com/) is a social events app which lets users create their own events and search for events theyre interested in. Users can express interest by attending events which they can keep track of in their My Events section. They can also create events which can be maintained in the My Events section. 
 
-## User Experience Design 
+## User Stories & Epics
 
-### User Stories
 #### **Events**
 [Events Epic](https://github.com/MarkClinton/whats-on/issues/41)
 
@@ -73,6 +72,7 @@ Finished Project Board after development
 
     + [Git](https://git-scm.com/): the version control system used to manage the code.
     + [Pip3](https://pypi.org/project/pip/): the package manager used to install the dependencies.
+    + [Venv](https://docs.python.org/3/library/venv.html): virtual environment used for the project.
     + [Gunicorn](https://gunicorn.org/): the webserver used to run the website.
     + [Spycopg2](https://www.python.org/dev/peps/pep-0249/): the database driver used to connect to the database.
     + [Django-allauth](https://django-allauth.readthedocs.io/en/latest/): the authentication library used to create the user accounts.
@@ -167,6 +167,8 @@ Docstrings should be added to files, classes and methods where appropiate.
 | Issue ID    | User Story |
 |-------------|-------------|
 |[#46](https://github.com/MarkClinton/whats-on/issues/46)| Add function and methods docstrings to better explain the logic. |
+
+## Bugs
 
 ## GitHub Authentication
 It should be known that during a mentor session it was pointed out that the user I was commiting code to the repo was not linked to my github account. 

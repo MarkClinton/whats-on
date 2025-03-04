@@ -62,9 +62,13 @@
 
                 {% if is_user_attending%}
                 <div class="card-body">
+                    {% if in_the_past %}
+                    <p class="card-text text-muted"> This event has already happened</p>
+                    {% else %}
                     <p class="card-text text-muted">You are going to this event</p>
                     <a class="btn btn-danger" href="{% url 'remove_attendance' event.id %}" aria-disabled="False">Cant
                         Attend</a>
+                    {% endif %}
                 </div>
                 {% elif user != event.host %}
                 <div class="card-body">
