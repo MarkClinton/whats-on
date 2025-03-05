@@ -1,7 +1,7 @@
 """
 Event model
 
-This model defines the Event, Comments and Categories models. 
+This model defines the Event, Comments and Categories models.
 """
 from datetime import date, datetime
 from django.db import models
@@ -12,6 +12,7 @@ from cloudinary.models import CloudinaryField
 User = get_user_model()
 
 RESPONSE = ((0, "Not Going"), (1, "Going"), (2, "Maybe"))
+
 
 class Category(models.Model):
     """
@@ -30,6 +31,7 @@ class Category(models.Model):
 
     def __str__(self):
         return f"{self.name}"
+
 
 class Event(models.Model):
     """
@@ -64,19 +66,20 @@ class Event(models.Model):
 
     def add_user_to_event(self, user):
         EventAttendees.objects.create(
-            event = self,
-            attendee = user,
-            rsvp = 1,
+            event=self,
+            attendee=user,
+            rsvp=1,
         )
 
     def clean(self):
 
+        LIMIT = "Event limit cannot be less than number of attendees"
         errors = {}
 
         if self.limit is not None and self.pk:
             attendees = EventAttendees.objects.filter(event=self).count()
             if self.limit < attendees:
-                errors["limit"] = "Event limit cannot be less than number of attendees"
+                errors["limit"] = LIMIT
 
         event_start = datetime.combine(self.date, self.start_time)
         event_end = datetime.combine(self.date, self.end_time)
@@ -97,6 +100,7 @@ class Event(models.Model):
     def __str__(self):
         return f"{self.event_title} | created by {self.host}"
 
+
 class EventAttendees(models.Model):
     """
     Defines the EventAttendees model fields
@@ -104,10 +108,10 @@ class EventAttendees(models.Model):
     :param models.Model: Django class to define data models
     """
     event = models.ForeignKey(
-        Event, on_delete = models.CASCADE, related_name="attending"
+        Event, on_delete=models.CASCADE, related_name="attending"
     )
     attendee = models.ForeignKey(
-        User, on_delete = models.CASCADE, related_name="attendee"
+        User, on_delete=models.CASCADE, related_name="attendee"
     )
     rsvp = models.IntegerField(choices=RESPONSE, default=0)
     is_blocked = models.BooleanField(default=False)

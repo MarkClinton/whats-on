@@ -41,16 +41,15 @@
                     <p class="card-text">
                         <span><i class="fa-solid fa-users text-green"></i></span>
                         {{ attendee_count }} attending
-                        {% if event.limit is not None %}
-                        <small>
-                            <p class="card-text text-muted"> This event has a limit of {{ event.limit }} attendees</p>
-                        </small>
-                        {% endif %}
                     </p>
+                    {% if event.limit is not None %}
+                    <p class="card-text text-muted"><small>This event has a limit of {{ event.limit }}
+                            attendees</small></p>
+                    {% endif %}
                 </div>
                 {% if user == event.host %}
                 <div class="card-body">
-                    <button class="btn btn-danger" id="eventDelete" event_id="{{ event.id }}">Delete</button>
+                    <button class="btn btn-danger" id="eventDelete" data-event-id="{{ event.id }}">Delete</button>
                     {% if in_the_past %}
                     <p class="card-text text-muted"> <small class="text-body-secondary">This event has already
                             happened</small></p>

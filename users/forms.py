@@ -6,11 +6,12 @@ from .models import NewUser
 
 class ProfileForm(forms.ModelForm):
 
-    TEL_MESSAGE ='Incorrect format. Use an Irish number. e.g. (087) 456 7890.'
+    TEL_MESSAGE = 'Incorrect format. Use an Irish number. e.g. (087) 456 7890.'
+    TEL_PLACEHOLDER = 'Irish Phone Numbers Only'
 
-    about = forms.CharField(widget=forms.Textarea(attrs={'rows' : '3'}))
+    about = forms.CharField(widget=forms.Textarea(attrs={'rows': '3'}))
     phone_number = PhoneNumberField(
-        widget=forms.TextInput(attrs={'placeholder': 'Irish Phone Numbers Only'}),
+        widget=forms.TextInput(attrs={'placeholder': TEL_PLACEHOLDER}),
         required=False,
         region="IE"
     )
@@ -20,5 +21,11 @@ class ProfileForm(forms.ModelForm):
     class Meta:
         model = NewUser
         fields = (
-            'first_name', 'last_name', 'email', 'profile_image', 'location', 'phone_number', 'about'
+            'first_name',
+            'last_name',
+            'email',
+            'profile_image',
+            'location',
+            'phone_number',
+            'about'
         )

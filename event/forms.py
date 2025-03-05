@@ -5,18 +5,24 @@ from .models import Event
 
 class EventForm(forms.ModelForm):
 
-    description = forms.CharField(widget=forms.Textarea(attrs={'rows' : '3'}))
-    date = forms.DateField(widget=forms.DateInput(attrs={'type' : 'date'}), label='Event Date')
-    start_time = forms.TimeField(widget=forms.TimeInput(attrs={'type' : 'time'}))
-    end_time = forms.TimeField(widget=forms.TimeInput(attrs={'type' : 'time'}))
+    description = forms.CharField(widget=forms.Textarea(attrs={'rows': '3'}))
+    date = forms.DateField(widget=forms.DateInput(
+        attrs={'type': 'date'}),
+        label='Event Date'
+    )
+    start_time = forms.TimeField(widget=forms.TimeInput(
+        attrs={'type': 'time'})
+    )
+    end_time = forms.TimeField(widget=forms.TimeInput(attrs={'type': 'time'}))
     event_image = CloudinaryFileField(required=False)
 
     class Meta:
         model = Event
         fields = (
-            'event_title', 'description', 'category', 'event_image', 'date', 
+            'event_title', 'description', 'category', 'event_image', 'date',
             'start_time', 'end_time', 'location', 'limit',
         )
+
 
 class SearchForm(forms.ModelForm):
 
@@ -28,7 +34,10 @@ class SearchForm(forms.ModelForm):
     )
 
     when = forms.ChoiceField(choices=CHOICES)
-    date = forms.DateField(widget=forms.DateInput(attrs={'type' : 'date'}), label='Pick a date')
+    date = forms.DateField(widget=forms.DateInput(
+        attrs={'type': 'date'}),
+        label='Pick a date'
+    )
     location = forms.CharField()
 
     class Meta:

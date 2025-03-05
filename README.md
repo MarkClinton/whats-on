@@ -89,7 +89,7 @@ Finished Project Board after development
     + [W3C Validator](https://validator.w3.org/): was used to validate HTML5 code for the website.
     + [W3C CSS validator](https://jigsaw.w3.org/css-validator/): was used to validate CSS code for the website.
     + [JShint](https://jshint.com/): was used to validate JS code for the website.
-    + [PEP8](https://pep8.org/): was used to validate Python code for the website.
+    + [CI Python Linter](https://pep8ci.herokuapp.com/#): was used to validate Python code for the website.
 
 ## Features
 Please see [FEATURES.md](FEATURES.MD) document for an overview of all features.
@@ -211,6 +211,7 @@ In the ERD Diagram you will notice 2 extra models, Notifications and Comments. T
 - [Comments Epic](https://github.com/MarkClinton/whats-on/issues/42)
 
 ## Testing
+Please see [TESTING.md](TESTING.MD) document for an overview of all features.
 
 ## Deployment
 To deploy this project either locally or to Heroku, please follow the below steps:
@@ -263,7 +264,7 @@ By forking the GitHub Repository you can make a copy of the original repository 
 
 #### Load the fixtures file (Optional)
 + Before loading the fixture file you must first register a user on the app. If you dont the fixture file will not work.
-+ The project contains a [fixtures file](/event/fixtures/events_fixture.json) with some pre-populated events data. 
++ The project contains a [fixtures file](/event/fixtures/events_fixture.json) with some pre-populated default event data. 
 + to load this into your database. Run the following ```python3 manage.py loaddata events_fixture.json```
 
 ### Local Deployment
@@ -304,7 +305,7 @@ os.environ.setdefault("CLOUDINARY_URL", "Your Cloudinary API environment variabl
 
 #### Load the fixture file (Optional)
 + Before loading the fixture file you must first register a user on the app. If you dont the fixture file will not work.
-+ The project contains a [fixtures file](/event/fixtures/events_fixture.json) with some pre-populated events data. 
++ The project contains a [fixtures file](/event/fixtures/events_fixture.json) with some pre-populated default event data. 
 + to load this into your database. Run the following ```python3 manage.py loaddata events_fixture.json```
 
 

@@ -1,7 +1,7 @@
 """
 Custom User model for Django
 
-This module defines a custom user model NewUser that extends Django's 
+This module defines a custom user model NewUser that extends Django's
 AbstractBaseUser and PermissionsMixin.
 
 The CustomAccountManager class is for user creation, functionality to
@@ -9,22 +9,27 @@ create both regular users and superusers.
 
 """
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
+from django.contrib.auth.models import (
+    AbstractBaseUser,
+    PermissionsMixin,
+    BaseUserManager
+)
 from phonenumber_field.modelfields import PhoneNumberField
 from cloudinary.models import CloudinaryField
 
+
 class CustomAccountManager(BaseUserManager):
     """
-    Since Djangos default user manager (UserManager) doesnt work with a 
+    Since Djangos default user manager (UserManager) doesnt work with a
     custom user model, this custom manager is used instead.
     """
 
     def create_user(self, email, password, **other_fields):
         """
-        Custom function to create a regular user. 
+        Custom function to create a regular user.
 
-        :param self: 
-        :param email: 
+        :param self:
+        :param email:
         :param user_name:
         :param first_name:
         :param password:
@@ -42,10 +47,10 @@ class CustomAccountManager(BaseUserManager):
 
     def create_superuser(self, email, password, **other_fields):
         """
-        Custom function to create a new superuser. 
+        Custom function to create a new superuser.
 
-        :param self: 
-        :param email: 
+        :param self:
+        :param email:
         :param user_name:
         :param first_name:
         :param password:
@@ -60,16 +65,15 @@ class CustomAccountManager(BaseUserManager):
                 "SuperUser must be assigned to is_staff = True"
             )
         if other_fields.get("is_superuser") is not True:
-            raise ValueError (
+            raise ValueError(
                 "Superuser must be assigned to is_superuser = True"
             )
         return self.create_user(email, password, **other_fields)
 
 
-
 class NewUser(AbstractBaseUser, PermissionsMixin):
     """
-    Custom Django user model class for a new user. 
+    Custom Django user model class for a new user.
 
     :param AbstractBaseUser: Django class for creating custom user model
     :param PermissionsMixin: Django mixin for user auth and permissions.

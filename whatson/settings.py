@@ -156,7 +156,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#Declare custom user model
+# Declare custom user model
 AUTH_USER_MODEL = 'users.NewUser'
 
 PHONENUMBER_DEFAULT_REGION = 'IE'

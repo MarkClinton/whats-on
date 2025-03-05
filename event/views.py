@@ -8,7 +8,8 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from .models import Event, EventAttendees
-from.forms import EventForm, SearchForm
+from .forms import EventForm, SearchForm
+
 
 class EventList(LoginRequiredMixin, generic.ListView, FormMixin):
     today = date.today()
@@ -18,12 +19,17 @@ class EventList(LoginRequiredMixin, generic.ListView, FormMixin):
     paginate_by = 10
     form_class = SearchForm
 
+
 @login_required
 def event_detail(request, event_id):
     event_query = Event.objects.all()
     event = get_object_or_404(event_query, id=event_id)
 
-    attendee_list = EventAttendees.objects.select_related('attendee').filter(event=event_id)
+    attendee_list = (
+        EventAttendees.objects
+        .select_related('attendee')
+        .filter(event=event_id)
+    )
     attendee_count = attendee_list.count()
     is_user_attending = attendee_list.filter(attendee=request.user).exists()
 
@@ -44,6 +50,7 @@ def event_detail(request, event_id):
         }
     )
 
+
 @login_required
 def event_create(request):
 
@@ -60,12 +67,12 @@ def event_create(request):
             )
             return HttpResponseRedirect(reverse('event_hosting'))
         return render(
-        request,
-        "event/create_event.html",
-        {
-            "event_form": event_form,
-        },
-    )
+            request,
+            "event/create_event.html",
+            {
+                "event_form": event_form,
+            },
+        )
 
     event_form = EventForm()
     return render(
@@ -76,13 +83,20 @@ def event_create(request):
         },
     )
 
+
 @login_required
 def event_edit(request, event_id):
     event_query = Event.objects.all()
     event = get_object_or_404(event_query, id=event_id)
 
     if request.method == "POST":
-        event_form = EventForm(data=request.POST, files=request.FILES, instance=event)
+        event_form = (
+            EventForm(
+                data=request.POST,
+                files=request.FILES,
+                instance=event
+            )
+        )
 
         if event_form.is_valid():
             event_form.save()
@@ -91,14 +105,16 @@ def event_edit(request, event_id):
                 messages.SUCCESS,
                 'Event Successfully Updated'
             )
-            return HttpResponseRedirect(reverse('event_detail', args=[event_id]))
+            return HttpResponseRedirect(
+                reverse('event_detail', args=[event_id])
+            )
         return render(
-        request,
-        "event/event_edit.html",
-        {
-            "event_form": event_form,
-        },
-    )
+            request,
+            "event/event_edit.html",
+            {
+                "event_form": event_form,
+            },
+        )
 
     event_form = EventForm(instance=event)
     return render(
@@ -109,6 +125,7 @@ def event_edit(request, event_id):
         },
     )
 
+
 @login_required
 def event_delete(request, event_id):
 
@@ -117,11 +134,20 @@ def event_delete(request, event_id):
 
     if event.host == request.user:
         event.delete()
-        messages.add_message(request, messages.SUCCESS, 'Event successfully deleted.')
+        messages.add_message(
+            request,
+            messages.SUCCESS,
+            'Event successfully deleted.'
+        )
     else:
-        messages.add_message(request, messages.ERROR, 'You cant delete someone elses event')
+        messages.add_message(
+            request,
+            messages.ERROR,
+            'You cant delete someone elses event'
+        )
 
     return HttpResponseRedirect(reverse('event_hosting'))
+
 
 @login_required
 def event_hosting(request):
@@ -148,6 +174,7 @@ def event_hosting(request):
             "is_past_events_none": is_past_events_none,
         },
     )
+
 
 @login_required
 def event_attending(request):
@@ -176,10 +203,12 @@ def event_attending(request):
         },
     )
 
+
 def attend_event(request, event_id):
     event = Event.objects.get(id=event_id)
     event.add_user_to_event(user=request.user)
     return HttpResponseRedirect(reverse('event_attending'))
+
 
 def remove_attend_event(request, event_id):
     event = EventAttendees.objects.get(event=event_id, attendee=request.user)

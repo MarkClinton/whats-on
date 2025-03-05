@@ -7,6 +7,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import NewUser
 
+
 class UserAdminConfig(UserAdmin):
     """
     custom layout for user model in admin portal
@@ -20,7 +21,13 @@ class UserAdminConfig(UserAdmin):
     list_display = ("email", "first_name", "is_active", "is_superuser")
 
     fieldsets = (
-        (None, {"fields": ("email", "first_name", "last_name", "password", "profile_image")}),
+        (None, {"fields": (
+            "email",
+            "first_name",
+            "last_name",
+            "password",
+            "profile_image")
+            }),
         ("Permissions", {"fields": ("is_active", "is_staff", "is_superuser")}),
         ("Personal", {"fields": ("about", "location", "phone_number")})
     )
@@ -28,9 +35,18 @@ class UserAdminConfig(UserAdmin):
     add_fieldsets = (
         (None, {
             "classes": ("wide",),
-            "fields": ("email", "first_name", "last_name", "profile_image",
-                        "password1", "password2", "is_active", "is_staff")
+            "fields": (
+                "email",
+                "first_name",
+                "last_name",
+                "profile_image",
+                "password1",
+                "password2",
+                "is_active",
+                "is_staff"
+            )
         }),
     )
+
 
 admin.site.register(NewUser, UserAdminConfig)
