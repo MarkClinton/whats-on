@@ -92,7 +92,7 @@ Finished Project Board after development
     + [CI Python Linter](https://pep8ci.herokuapp.com/#): was used to validate Python code for the website.
 
 ## Features
-Please see [FEATURES.md](FEATURES.MD) document for an overview of all features.
+Please see [FEATURES.md](FEATURES.md) document for an overview of all features.
 
 ## Design 
 
