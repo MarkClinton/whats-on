@@ -211,7 +211,7 @@ In the ERD Diagram you will notice 2 extra models, Notifications and Comments. T
 - [Comments Epic](https://github.com/MarkClinton/whats-on/issues/42)
 
 ## Testing
-Please see [TESTING.md](TESTING.MD) document for an overview of all features.
+Please see [TESTING.md](TESTING.md) document for an overview of all features.
 
 ## Deployment
 To deploy this project either locally or to Heroku, please follow the below steps:
