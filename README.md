@@ -378,6 +378,27 @@ While using the cloudinary package to handle the upload of images there was some
 
 ![currently field bug](documentation/bugs/currently_field.png)
 
+### register a user with an existing email
+During final testing a bug was found when, if a user tries to register with an already existing email they would, depending on teh environment be shown an IntegrityError exception or a 500 page. It seemed as though AllAuth didnt handle validation correctly. Or maybe due to the use of a Custom User Model I didnt handle the AllAuth setup very well. In any case, the fix for this was to create a custom sign up form which extends AllAuths SignupForm. It keeps everyhting as is on the form but  defines a method to check whether or not there is already an existing email registered. If so, it send backs a a Validation Error to the form alerting the user. 
+
+[forms.py](/users/forms.py)
+``` Python 
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise ValidationError("A user with this email already exists.")
+        return email
+```
+
+[settings.py](/whatson/settings.py)
+```Python
+ACCOUNT_FORMS = {
+    'signup': 'users.forms.CustomSignupForm'
+}
+```
+
+![Integrity constraint bug](documentation/bugs/register_existing_email.png)
+
 ## GitHub Authentication
 It should be known that during a mentor session it was pointed out that the user I was commiting code to the repo was not linked to my github account. 
 

@@ -131,6 +131,12 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = False
 # Email is needed when logging in
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
+# Email is unique
+ACCOUNT_UNIQUE_EMAIL = True
+
+ACCOUNT_FORMS = {
+    'signup': 'users.forms.CustomSignupForm'
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/5.1/topics/i18n/

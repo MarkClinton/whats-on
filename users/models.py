@@ -14,6 +14,7 @@ from django.contrib.auth.models import (
     PermissionsMixin,
     BaseUserManager
 )
+from django.forms import ValidationError
 from phonenumber_field.modelfields import PhoneNumberField
 from cloudinary.models import CloudinaryField
 
